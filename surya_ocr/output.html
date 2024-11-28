@@ -1,0 +1,83 @@
+
+    <html>
+    <head>
+        <title>Text Extraction</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                position: relative;
+                width: 1190px; /* Set to match the page width */
+                height: 1674px; /* Set to match the page height */
+                margin: 20px auto;
+                border: 1px solid #ddd;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .document-title {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .text-line {
+                position: absolute;
+                font-size: 14px;
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="page">
+<div class="document-title">DECISION DE CONSIGNATION HCP</div>
+<div class="table" style="left: 156.0px; top: 24.0px; width: 130.0px; height: 17.0px;">Royaume du Maroc</div>
+<div class="table" style="left: 618.0px; top: 27.0px; width: 75.0px; height: 14.0px;">ﺍﻟﻤﻠﻜﺔ ﺍﻟﻤﺘ</div>
+<div class="table" style="left: 322.0px; top: 121.0px; width: 184.0px; height: 13.0px;">HAUT-COMMISSARIAT AU PLAN</div>
+<div class="table" style="left: 685.0px; top: 126.0px; width: 42.0px; height: 9.0px;">ﻣﺪﻥ ﺍﻟﻤﺪﻳﻨﺔ</div>
+<div class="table" style="left: 454.0px; top: 428.0px; width: 21.0px; height: 13.0px;">ﺎ ﺍﻟﻜ</div>
+<div class="table" style="left: 85.0px; top: 429.0px; width: 191.0px; height: 20.0px;">ﺍﻥ ﺍﻭﺍﻓﻴﻜﻢ ﺑﺎﻟﻮﺛﻴﻘﺔ ﺍﻟﻤﺸﺎﺭ</div>
+<div class="table" style="left: 560.0px; top: 464.0px; width: 12.0px; height: 11.0px;">ﺮ 0</div>
+<div class="table" style="left: 637.0px; top: 464.0px; width: 29.0px; height: 13.0px;">ﻟﺘ</div>
+<div class="table" style="left: 180.0px; top: 465.0px; width: 157.0px; height: 16.0px;">ﺍﻟﻴﻬﺎ  ﺠﺎﻧﺒﺎ ﻟﻺﺧﺘﺼﺎﺹ.</div>
+<div class="table" style="left: 381.0px; top: 465.0px; width: 24.0px; height: 19.0px;">01</div>
+<div class="table" style="left: 495.0px; top: 465.0px; width: 46.0px; height: 12.0px;">ﺍﻟﻤﻤﺜﺪﺓ</div>
+<div class="table" style="left: 570.0px; top: 480.0px; width: 29.0px; height: 8.0px;">11911</div>
+<div class="table" style="left: 452.0px; top: 497.0px; width: 279.0px; height: 22.0px;">2022/01/01 ﺇﻟﻰ 2022/01/01 ﻳﺘﻌﻠﻖ</div>
+<div class="table" style="left: 13.0px; top: 1038.0px; width: 715.0px; height: 24.0px;">ot 31-3، ﻗﻄﺎﻉ 16، ﺣﻲ ﺍﻟﺮﻳﺎﺽ 10001 ﺍﻟﺮﻳﺎﻁ-- ﺍﻟﻤﻐﺮﺏ  ﺹ.ﺏ :      178    : . ot 31-3, secteur 16, Hay Riad, 10001 Rabat Maroc B.P.</div>
+<div class="table" style="left: 77.0px; top: 1067.0px; width: 591.0px; height: 23.0px;">Tél. : (+212) 037 47 69 00 – Fax : </div>
+</div>
+<div class="page">
+<div class="document-title">DECISION DE CONSIGNATION HCP</div>
+<div class="table" style="left: 159.0px; top: 22.0px; width: 126.0px; height: 15.0px;">Royaume du Maroc</div>
+<div class="table" style="left: 607.0px; top: 25.0px; width: 85.0px; height: 11.0px;">ﺍﻟﻤﻠﻜﺔ ﺍﻟﻤﻘﺎﺑ</div>
+<div class="table" style="left: 322.0px; top: 117.0px; width: 186.0px; height: 14.0px;">HAUT-COMMISSARIAT AU PLAN</div>
+<div class="table" style="left: 640.0px; top: 123.0px; width: 88.0px; height: 11.0px;">ﻟﺪﻳﺮ ﺍﻟﻤﻬﺎﺭ ﺍ</div>
+<div class="table" style="left: 81.0px; top: 126.0px; width: 125.0px; height: 7.0px;">Derections der Derraumen Japa</div>
+<div class="table" style="left: 646.0px; top: 141.0px; width: 64.0px; height: 12.0px;">ﻣﺎﻟﻴﺔ ﻭﺯﻳﺮ ﺍﻟﺘ</div>
+<div class="table" style="left: 102.0px; top: 142.0px; width: 109.0px; height: 10.0px;">et des Affaires Generales</div>
+<div class="table" style="left: 505.0px; top: 310.0px; width: 197.0px; height: 21.0px;">ﺇﻥ ﺍﻟﻤﻨﺪﻭﺏ ﺍﻟﺴﺎﻣﻰ ﺍﻟﺘﺨﻄﻴﻂ</div>
+<div class="table" style="left: 93.0px; top: 358.0px; width: 606.0px; height: 23.0px;">- ﺑﻨﺎﺀ ﻋﻠﻰ ﺍﻟﻔﺼﻞ 39 ﻣﻦ ﺍﻟﻤﺮﺳﻮﻡ ﺍﻟﻤﻠﻜﻲ ﺭﻗﻢ 330/66 ﺑﺘﺎﺭﻳﺦ 10 ﻣﺤﺮﻡ 1387 (21</div>
+<div class="table" style="left: 334.0px; top: 397.0px; width: 368.0px; height: 20.0px;">ﺃﺑﺮﻳﻞ 1967 ﻭﺍﻟﻤﺘﻌﻠﻖ ﺑﺎﻟﻨﻈﺎﻡ ﺍﻟﻌﺎﻡ ﻟﻠﻤﺤﺎﺳﺒﺔ ﺍﻟﻌﻤﻮﻣﻴﺔ؛</div>
+<div class="table" style="left: 101.0px; top: 432.0px; width: 599.0px; height: 23.0px;">- و على عقدة الككراء المبرمة بين المندوبية السامية للتخطيط والمر حوم السيد صالح عثمون؛</div>
+<div class="table" style="left: 273.0px; top: 471.0px; width: 426.0px; height: 23.0px;">- ﻭ ﻋﻠﻰ ﺷﻬﺎﺩﺓ ﻭﻓﺎﺓ ﺍﻟﺴﻴﺪ ﺻﺎﻟﺢ ﻋﺜﻤﻮﻥ ﺑﺘﺎﺭﻳﺦ 2008/05/21؛</div>
+<div class="table" style="left: 382.0px; top: 510.0px; width: 316.0px; height: 18.0px;">ـ ﻭ ﻋﻠﻰ ﻋﻘﺪ ﺍﻹﺭﺍﺛﺔ ﺍﻟﻤﺆﺭﺥ ﻓﻲ 30 ﻣﺎﻱ 2008.</div>
+<div class="table" style="left: 352.0px; top: 573.0px; width: 86.0px; height: 18.0px;">ﻳﻘﺮﺭ ﻣﺎﻳﻠﻰ:</div>
+<div class="table" style="left: 91.0px; top: 617.0px; width: 603.0px; height: 27.0px;">ﺍﻟﻤﺎﺩﺓ ﺍﻷﻭﻟﻰ: ﺗﻮﺩﻉ ﻟﺪﻯ ﺻﻨﺪﻭﻕ ﺍﻹﻳﺪﺍﻉ ﻭﺍﻟﺘﺪﺑﻴﺮ ﺑﺎﻟﺮﺑﺎﻁ ، ﺍﻟﻤﺒﻠﻎ ﺍﻟﻤﺘﺮﺗﺐ ﻋﻦ ﻭﺍﺟﺒﺎﺕ</div>
+<div class="table" style="left: 91.0px; top: 655.0px; width: 608.0px; height: 22.0px;">ﻛﺮﺍﺀ ﺍﻟﻤﻘﺮ ، ﻣﻮﺿﻮﻉ ﻋﻘﺪﺓ ﺍﻟﻜﺮﺍﺀ ﺍﻟﻤﺸﺎﺭ ﺇﻟﻴﻬﺎ ﺃﻋﻼﻩ، ﻟﻔﺎﺋﺪﺓ ﻭﺭﺛﺔ ﺍﻟﻤﺮﺣﻮﻡ ﺻﺎﻟﺢ ﻋﺜﻤﻮﻥ</div>
+<div class="table" style="left: 91.0px; top: 694.0px; width: 609.0px; height: 22.0px;">ﻭﻗﺪﺭﻩ 90169,20 ﺩﺭﻫﻢ (ﺗﺴﻌﻮﻥ ﺃﻟﻒ ﻭﻣﺎﺋﺔ ﻭﺗﺴﻌﺔ ﻭﺳﺘﻮﻥ ﺩﺭ ﻫﻤﺎ ﻭﻋﺸﺮﻭﻥ ﺳﻨﺘﻴﻤﺎ.) ﻋﻦ</div>
+<div class="table" style="left: 91.0px; top: 730.0px; width: 482.0px; height: 23.0px;">ﻣﻦ 2022/01/01 ﺇﻟﻰ 2022/12/31 ﻓﻲ ﺍﻟﺤﺴﺎﺏ ﺭﻗﻢ</div>
+<div class="table" style="left: 574.0px; top: 734.0px; width: 66.0px; height: 14.0px;">ﺍﻟﻤﻤﺘﺪﺓ </div>
+<div class="table" style="left: 642.0px; top: 734.0px; width: 57.0px; height: 14.0px;">ﺍﻟﻔﺘﺮ ﺓ ﺍﻟ</div>
+<div class="table" style="left: 368.0px; top: 770.0px; width: 330.0px; height: 20.0px;">.060810001010100851000263</div>
+<div class="table" style="left: 91.0px; top: 808.0px; width: 609.0px; height: 23.0px;">المادة الثانية: يحتفظ بالمبلغ المشار  إليه في المادة الأولى إلى حين رفع اليد عنه وتقسيمه بين</div>
+<div class="table" style="left: 215.0px; top: 846.0px; width: 485.0px; height: 23.0px;">ﻭﺭﺛﺔ ﺍﻟﻤﺮ ﺤﻮﻡ ﺍﻟﺴﻴﺪ ﺻﺎﻟﺢ ﻋﻠﻤﻮﻥ ﻛﻞ ﺣﺴﺐ ﻧﺼﻴﺒﻪ ﺍﻟﺸﺮ ﻋﻲ ﻓﻲ ﺍﻹﺯ ﺙ.</div>
+<div class="table" style="left: 11.0px; top: 1038.0px; width: 712.0px; height: 24.0px;">ot 31-3, secteur 16, Hay Riad, 10001 Rabat Maroc B.P. :   178</div>
+<div class="table" style="left: 74.0px; top: 1067.0px; width: 591.0px; height: 25.0px;">Tél. : (+212) 037 47 69 00 – Fax : </div>
+</div>
+
+    </body>
+    </html>
+    

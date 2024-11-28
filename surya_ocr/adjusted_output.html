@@ -1,0 +1,970 @@
+
+<html>
+<head>
+<title>Text Extraction</title>
+<style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                position: relative;
+                width: 1190px; /* Set to match the page width */
+                height: 1674px; /* Set to match the page height */
+                margin: 20px auto;
+                border: 1px solid #ddd;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .document-title {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .text-line {
+                position: absolute;
+                font-size: 14px;
+                white-space: nowrap;
+            }
+        </style>
+</head>
+<body>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 60.0px; top: 40.0px; width: 161.0px; height: 16.0px;">Régie Autonome Intercommunale</div>
+<div class="text-line" style="left: 566.0px; top: 41.0px; width: 72.0px; height: 13.0px;">ﺍﻟﻤﻌﺎﺭ ﻣﺎﺗﻮ</div>
+<div class="text-line" style="left: 36.0px; top: 64.0px; width: 209.0px; height: 16.0px;">de Distribution d'Eau et d'Electricité de Fès</div>
+<div class="text-line" style="left: 555.0px; top: 131.0px; width: 64.0px; height: 14.0px;">03/01/2023</div>
+<div class="text-line" style="left: 556.0px; top: 155.0px; width: 57.0px; height: 13.0px;">D/29/2023</div>
+<div class="text-line" style="left: 556.0px; top: 183.0px; width: 23.0px; height: 13.0px;">DAJ</div>
+<div class="text-line" style="left: 120.0px; top: 193.0px; width: 207.0px; height: 16.0px;">ﺍﻟﺴﻴﺪ ﻣﺪﻳﺮ ﺻﻨﺪﻭﻕ ﺍﻹﻳﺪﺍﻉ</div>
+<div class="text-line" style="left: 193.0px; top: 223.0px; width: 64.0px; height: 14.0px;">ﻭ ﺍﻟﺘﺪﺑﻴﺮ</div>
+<div class="text-line" style="left: 106.0px; top: 250.0px; width: 237.0px; height: 18.0px;">ﺳﺎﺣﺔ ﻣﻮﻻﻯ ﺍﻟﺤﺴﻦ ﺹ.ﺏ 408</div>
+<div class="text-line" style="left: 186.0px; top: 279.0px; width: 78.0px; height: 16.0px;">- ﺍﻟﺮ ﺑﺎﻁ -</div>
+<div class="text-line" style="left: 520.0px; top: 390.0px; width: 190.0px; height: 16.0px;">ﺍﻟﻤﻮﺿﻮﻉ : ﺍﻳﺪﺍﻉ ﺗﻌﻮﻳﻀﺎﺕ</div>
+<div class="text-line" style="left: 518.0px; top: 451.0px; width: 192.0px; height: 17.0px;">ﺳﻼﻡ ﺗﺎﻡ ﺑﻮ ﺟﻮﺩ ﻣﻮ ﻻﻧﺎ ﺍﻹﻣﺎﻡ</div>
+<div class="text-line" style="left: 72.0px; top: 510.0px; width: 633.0px; height: 20.0px;">ﺗﺒﻌﺎ ﻟﻠﻤﺮﺳﻮﻡ ﺭﻗﻢ 2.22.645 ﺻﺎﺩﺭ ﻓﻲ 22 ﻣﻦ  ﺻﻐﺮ 1444 (19 ﺳﺒﺘﻤﺒﺮ 2022) ﺑﺈﻋﻼﻥ ﺃﻥ ﺍﻟﻤﻨﻐﻌﺔ ﺍﻟﻌﺎﻣﺔ</div>
+<div class="text-line" style="left: 73.0px; top: 540.0px; width: 637.0px; height: 23.0px;">ﺗﻘﻀﻲ ﺑﺎﺯﺟﺎﺯ ﻗﻨﺎﺓ ﺭﺋﻴﺴﻴﺔ ﻟﻠﺘﻄﻬﻴﺮ  ﺍﻟﺴﺎﺋﻞ ﺑﻤﻨﻄﻘﺔ ﻃﺮﻳﻖ ﺇﻳﻤﻮﺯ ﺍﺭ ﺑﺠﻤﺎﻋﺔ ﻓﺎﺱ ﺑﻌﻤﺎﻟﺔ ﻓﺎﺱ ﻭﺑﻨﺰ ﻉ ﻣﻠﻜﻴﺔ ﺍﻟﻘﻄﻊ</div>
+<div class="text-line" style="left: 72.0px; top: 573.0px; width: 637.0px; height: 20.0px;">ﺍﻷﺭﺿﻴﺔ ﺍﻟﻼﺯﻣﺔ ﻟﻬﺬﺍ ﺍﻟﻐﺮﺽ ﻣﻦ ﻃﺮﻑ ﺍﻟﻮﻛﺎﻟﺔ ﺍﻟﻤﺴﺘﻘﻠﺔ ﺍﻟﺠﻤﺎﻋﻴﺔ ﻟﺘﻮﺯﻳﻊ ﺍﻟﻤﺎﺀ ﻭﺍﻟﻜﻬﺮﺑﺎﺀ ﺑﻔﺎﺱ، ﻭﺑﻨﺰﻉ</div>
+<div class="text-line" style="left: 72.0px; top: 605.0px; width: 637.0px; height: 22.0px;">ﻣﻠﻜﻴﺔ ﺍﻟﻘﻄﻊ ﺍﻷﺭﺿﻴﺔ ﺍﻟﻼﺯﻣﺔ ﻟﻬﺬﺍ ﺍﻟﺨﺮﺽ، ﻳﺸﺮﻓﻨﻲ ﺃﻥ ﺃﻭ ﺍﻓﻴﻜﻢ ﺭﻓﻘﺘﻪ ﺑﺸﻴﻚ ﺑﻘﻴﻤﺔ 858.00 040 1 ﺩﺭﻫﻢ</div>
+<div class="text-line" style="left: 72.0px; top: 637.0px; width: 635.0px; height: 23.0px;">ﻣﺴﺤﻮﺏ ﻋﻠﻰ ﺍﻟﺘﺠﺎﺭﻱ ﻭﻓﺎ ﺑﻨﻚ ﺗﺤﺖ ﻋﺪﺩ 603763 ﻛﺎﻳﺪﺍﻉ ﻟﻠﺘﻌﻮﻳﻀﺎﺕ ﺍﻻﺣﺘﻴﺎﻃﻴﺔ ﺍﻟﻤﺘﻌﻠﻘﺔ ﺑﺎﻟﻘﻄﻊ ﺍﻷﺭﺿﻴﺔ</div>
+<div class="text-line" style="left: 580.0px; top: 669.0px; width: 128.0px; height: 23.0px;">ﻣﻮﺿﻮﻉ ﻧﺰﻉ ﺍﻟﻤﻠﻜﻴﺔ.</div>
+<div class="text-line" style="left: 530.0px; top: 702.0px; width: 165.0px; height: 20.0px;">ﺗﺠﺪﻭﻥ ﺭﻓﻘﺘﻪ ﺍﻟﻮﺛﺎﺋﻖ ﺍﻟﺘﺎﻟﻴﺔ:</div>
+<div class="text-line" style="left: 122.0px; top: 736.0px; width: 567.0px; height: 20.0px;">-  ﻧﺴﺨﺔ ﻣﻦ ﺍﻟﻤﺮﺳﻮﻡ ﺭﻗﻢ 2.22.645 ﺻﺎﺩﺭ ﻓﻲ 22 ﻣﻦ  ﺻﻐﺮ 1444 (19 ﺳﺒﺘﻤﺒﺮ 2022)</div>
+<div class="text-line" style="left: 602.0px; top: 769.0px; width: 102.0px; height: 18.0px;">-  ﻣﻘﺮﺭ ﺍﻹﻳﺪﺍﻉ</div>
+<div class="text-line" style="left: 588.0px; top: 802.0px; width: 115.0px; height: 15.0px;">- ﺑﻄﺎﻗﺔ ﺍﻟﺤﺴﺎﺑﺎﺕ</div>
+<div class="text-line" style="left: 639.0px; top: 862.0px; width: 73.0px; height: 10.0px;">ﻭ ﺗﻌﺘﻠﻮ ﺍ ﺗﺤﺘ</div>
+<div class="text-line" style="left: 533.0px; top: 1006.0px; width: 218.0px; height: 12.0px;">· ﺍﻟﻤﻘﺮ : 10 ﺷﺎﺭﻉ ﻣﺤﻤﺪ ﺍﻟﻜﻐﺎﻁ ـ ﺹ.ﺏ : 2097 - ﻓﺎﺱ</div>
+<div class="text-line" style="left: 34.0px; top: 1008.0px; width: 248.0px; height: 11.0px;">· Siège Social : 10 rue Mohamed El Kaghat - B.P. 2097 -)</div>
+<div class="text-line" style="left: 527.0px; top: 1022.0px; width: 226.0px; height: 11.0px;">· التعريف الضريبي : 04500247 · الباتتتا : 13109930</div>
+<div class="text-line" style="left: 33.0px; top: 1023.0px; width: 168.0px; height: 11.0px;">· I.F. : 04500247 · Patente : 13109930</div>
+<div class="text-line" style="left: 598.0px; top: 1035.0px; width: 155.0px; height: 13.0px;">. ﺍﻟﻬﺎﺗﻒ : 17/ 15 / 15 / 15 62 35 05</div>
+<div class="text-line" style="left: 34.0px; top: 1038.0px; width: 119.0px; height: 11.0px;">· Tél. 05 35 62 50 15 /16/17</div>
+<div class="text-line" style="left: 635.0px; top: 1050.0px; width: 118.0px; height: 13.0px;">• ﺍﻟﻔﺎﻛﺲ : 95 07 62 35 05</div>
+<div class="text-line" style="left: 33.0px; top: 1052.0px; width: 96.0px; height: 12.0px;">· Fax : 05 35 62 07 95</div>
+<div class="text-line" style="left: 595.0px; top: 1066.0px; width: 157.0px; height: 11.0px;">dg@radeef.ma : ﺍﻟﺒﺮﻳﺪ ﺍﻻﻟﻜﺘﺮﻭﻧﻲ :</div>
+<div class="text-line" style="left: 31.0px; top: 1067.0px; width: 115.0px; height: 12.0px;">· E.mail : dg@radeef.ma</div>
+<div class="text-line" style="left: 584.0px; top: 1080.0px; width: 163.0px; height: 13.0px;">ﺍﻟﻤﻮﻗﻊ ﺍﻻﻟﻜﺘﺮﻭﻧﻲ : www. radeef.ma</div>
+<div class="text-line" style="left: 31.0px; top: 1082.0px; width: 124.0px; height: 12.0px;">· Site web: www.radeef.ma</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 542.0px; top: 40.0px; width: 183.0px; height: 19.0px;">ﺍﻟﻮ ﻛﺎﻟﺔ ﺍﻟﻤﺴﺘﻘﻠﺔ ﺍﻟﺠﻤﺎﻋﻴﺔ</div>
+<div class="text-line" style="left: 60.0px; top: 41.0px; width: 161.0px; height: 15.0px;">Régie Autonome Intercommunale</div>
+<div class="text-line" style="left: 36.0px; top: 64.0px; width: 209.0px; height: 15.0px;">de Distribution d'Eau et d'Electricité de Fès</div>
+<div class="text-line" style="left: 536.0px; top: 65.0px; width: 203.0px; height: 24.0px;">ﻟﺘﻮﺯﻳﻊ ﺍﻟﻤﺎﺀ ﻭﺍﻟﻜﻬﺮﺑﺎﺀ ﺑﻔﺎﺱ</div>
+<div class="text-line" style="left: 329.0px; top: 172.0px; width: 152.0px; height: 24.0px;">ﻣﻘﺮﺭ ﺍﻻﻳـ</div>
+<div class="text-line" style="left: 258.0px; top: 266.0px; width: 451.0px; height: 16.0px;">ﺍﻥ ﺍﻟﻤﺪﻳﺮ ﺓ ﺍﻟﻌﺎﻣﺔ ﻟﻠﻮ ﻛﺎﻟﺔ ﺍﻟﻤﺴﺘﻘﻠﺔ ﺍﻟﺠﻤﺎﻋﻴﺔ ﻟﺘﻮ ﺯﻳﻊ ﺍﻟﻤﺎﺀ ﻭ ﺍﻟﻜﻬﺮ ﺑﺎﺀ ﺑﻔﺎﺱ</div>
+<div class="text-line" style="left: 101.0px; top: 288.0px; width: 566.0px; height: 18.0px;">ﻧﻈﺮ ﺃ ﻟﻠﻈﻬﻴﺮ  ﺍﻟﺸﺮﻳﻒ ﺭﻗﻢ 254. 81. 1 ﺍﻟﺼﺎﺩﺭ  ﺑﺘﺎﺭﻳﺦ 11 ﺭﺟﺐ 1402 (6 ﻣﺎﻳﻮ 1982)</div>
+<div class="text-line" style="left: 125.0px; top: 309.0px; width: 537.0px; height: 22.0px;">ﺑﺘﻨﻔﻴﺬ ﺍﻟﻘﺎﻧﻮﻥ ﺭﻗﻢ 81-7 ﺍﻟﻤﺘﻌﻠﻖ ﺑﻨﺰ ﻉ ﺍﻟﻤﻠﻜﻴﺔ ﻷﺟﻞ ﺍﻟﻤﻨﻔﻌﺔ ﺍﻟﻌﺎﻣﺔ ﻭ ﺑﺎﻻﺣﺘﻼﻝ ﺍﻟﻤﺆﻗﺖ.</div>
+<div class="text-line" style="left: 101.0px; top: 333.0px; width: 562.0px; height: 20.0px;">ﻭﻧﻈﺮﺃ ﻟﻠﻤﺮﺳﻮﻡ ﺭﻗﻢ 2.22.645 ﺻﺎﺩﺭ ﻓﻲ 22 ﻣﻦ ﺻﻔﺮ 1444 (19 ﺳﺒﺘﻤﺒﺮ 2022)</div>
+<div class="text-line" style="left: 101.0px; top: 356.0px; width: 560.0px; height: 20.0px;">ﺑﺈﻋﻼﻥ ﺃﻥ ﺍﻟﻤﻨﻐﻌﺔ ﺍﻟﻌﺎﻣﺔ ﺗﻘﻀﻰ ﺑﺎﻧﺠﺎﺯ ﻗﻨﺎﺓ ﺭﺋﻴﺴﻴﺔ ﻟﻠﺘﻈﻬﻴﺮ ﺍﻟﺴﺎﺋﻞ ﺑﻤﻨﻄﻘﺔ ﻃﺮﻳﻖ ﺇﻳﻤﻮﺯ ﺍﺭ</div>
+<div class="text-line" style="left: 193.0px; top: 377.0px; width: 468.0px; height: 24.0px;">ﺑﺠﻤﺎﻋﺔ ﻓﺎﺱ ﺑﻌﻤﺎﻟﺔ ﻓﺎﺱ ﻭﺑﻠﺰ ﻉ ﻣﻠﻜﻴﺔ ﺍﻟﻘﻄﻊ ﺍﻷﺭﺿﻴﺔ ﺍﻟﻼﺯ ﻣﺔ ﻟﻬﺬﺍ ﺍﻟﻐﺮ ﺽ</div>
+<div class="text-line" style="left: 101.0px; top: 406.0px; width: 558.0px; height: 27.0px;">ﻭﻧﻈﺮﺃ ﻷﻧﻪ ﻗﺪ ﺗﻢ ﺗﻔﻮﻳﺾ ﺣﻖ ﻧﺰﻉ ﺍﻟﻤﻠﻜﻴﺔ ﺇﻟﻰ ﺍﻟﻮﻛﺎﻟﺔ ﺍﻟﻤﺴﺘﻘﻠﺔ ﺍﻟﺠﻤﺎﻋﻴﺔ ﻟﺘﻮﺯﻳﻊ ﺍﻟﻤﺎﺀ</div>
+<div class="text-line" style="left: 558.0px; top: 438.0px; width: 103.0px; height: 14.0px;">ﻭ ﺍﻟﻜﻬﺮ ﻳﺎﺀ ﻳﻔﺎﺱ</div>
+<div class="text-line" style="left: 99.0px; top: 457.0px; width: 563.0px; height: 21.0px;">ﻭﻧﻈﺮﺍ ﻷﻥ ﺍﻟﻠﺠﻨﺔ ﺍﻹﺩﺍﺭﻳﺔ ﻟﻠﺘﻘﻴﻴﻢ ﻗﺪ ﺍﻟﺠﺘﻤﻌﺖ ﺑﺘﺎﺭﻳﺦ 25 ﻳﻮﻧﻴﻮ 2020 ﺑﻤﻘﺮ ﺍﻟﻜﺘﺎﺑﺔ ﺍﻟﻌﺎﻣﺔ</div>
+<div class="text-line" style="left: 100.0px; top: 483.0px; width: 561.0px; height: 22.0px;">ﻟﻮ ﻻﻳﺔ ﺟﻬﺔ ﻓﺎﺱ ﻣﻜﻨﺎﺱ ﻭ ﺣﺮﺭﺕ ﻣﺤﻀﺮ ﺃ ﺗﻢ ﻣﻦ ﺧﻼﻟﻪ ﺗﺤﺪﻳﺪ ﻗﻴﻤﺔ ﺍﻟﻘﻄﻊ ﺍﻟﻼﺯﻣﺔ ﻹﻧﺠﺎﺯ</div>
+<div class="text-line" style="left: 99.0px; top: 510.0px; width: 560.0px; height: 20.0px;">ﺍﻟﻤﺸﺮﻭﻉ ﺍﻟﻤﺬﻛﻮﺭ ﻭﺗﻘﺪﺭ ﺍﻟﻤﺴﺎﺣﺔ ﺍﻹﺟﻤﺎﻟﻴﺔ ﻟﻬﺬﻩ ﺍﻟﻘﻄﻊ ﺍﻷﺭﺿﻴﺔ ﺑـ 5204.29 ﻣﺘﺮ ﻣﺮﺑﻊ</div>
+<div class="text-line" style="left: 325.0px; top: 535.0px; width: 334.0px; height: 19.0px;">ﻭ ﺗﺘﻜﻮﻥ ﻣﻦ ﺃﻣﺎﻧﻴﺔ ﻋﺸﺮ ﺑﻘﻌﺔ ﺗﻌﻮﺩ ﻣﻠﻜﻴﺘﻬﺎ ﻟﻠﺨﻮﺍﺹ.</div>
+<div class="text-line" style="left: 509.0px; top: 559.0px; width: 151.0px; height: 17.0px;">ﻭ ﻧﻈﺮ ﺃ ﻟﺒﻄﺎﻗﺔ ﺍﻟﺤﺴﺎﺑﺎﺕ</div>
+<div class="text-line" style="left: 349.0px; top: 568.0px; width: 84.0px; height: 18.0px;">ﻳﻘﺮﺭ ﻣﺎ ﻳﻠﻰ:</div>
+<div class="text-line" style="left: 99.0px; top: 610.0px; width: 583.0px; height: 21.0px;">ﺍﻟﻔﺼﻞ ﺍﻷﻭﻝ: ﺗﻮﺩﻉ ﻟﺪﻯ ﺍﻟﺴﻴﺪ ﺍﻟﻤﺪﻳﺮ ﺍﻟﻌﺎﻡ ﻟﺼﻨﺪﻭﻕ ﺍﻹﻳﺪﺍﻉ ﻭﺍﻟﺘﺪﺑﻴﺮ ﺑﺎﻟﺮﺑﺎﻁ ﻣﺒﻠﻎ:</div>
+<div class="text-line" style="left: 98.0px; top: 631.0px; width: 578.0px; height: 24.0px;">040 1 ﺩﺭﻫﻢ (ﻣﻠﻴﻮﻥ ﻭﺃﺭﺑﻌﻮﻥ ﺃﻟﻔﺎ ﻭ ﺛﻤﺎﻧﻤﺎﺋﺔ ﻭ ﺛﻤﺎﻧﻴﺔ ﻭ ﺛﻤﺎﻧﻴﺔ ﻭ ﺧﻤﺴﻮﻥ ﺩﺭ ﻫﻤﺎ) ﻭﺍﻟﺬﻯ</div>
+<div class="text-line" style="left: 98.0px; top: 660.0px; width: 584.0px; height: 27.0px;">ﻳﻤﺜﻞ ﺍﻟﺘﻌﻮﻳﺾ ﺍﻻﺣﺘﻴﺎﻃﻰ ﺍﻟﻨﺎﺗﺞ ﻋﻦ ﻧﺰﻉ ﺍﻟﻤﻠﻜﻴﺔ ﻟﻠﺒﻘﻊ ﺍﻷﺭﺿﻴﺔ ﺍﻟﻤﺸﺎﺭ ﺇﻟﻰ ﺃﺭﻗﺎﻣﻬﺎ ﻓﻰ ﺑﻄﺎﻗﺔ</div>
+<div class="text-line" style="left: 618.0px; top: 692.0px; width: 63.0px; height: 15.0px;">ﺍﻟﺤﺴﺎﺑﺎﺕ.</div>
+<div class="text-line" style="left: 97.0px; top: 723.0px; width: 584.0px; height: 25.0px;">ﺍﻟﻔﺼﻞ ﺍﻟﺜﺎﻧﻲ: ﺳﻴﺆﺩﻯ ﺍﻟﻤﺒﻠﻎ ﺍﻟﻤﻮﺩﻉ ﻟﻤﻼﻛﻰ ﺍﻟﺒﻘﻢ ﺍﻷﺭﺿﻴﺔ ﺍﻟﻤﻨﺰﻭﻋﺔ ﻣﻠﻜﻴﺘﻬﺎ ﻭﺫﻟﻚ ﺑﻌﺪ ﺇﺩﻻﺋﻬﻢ</div>
+<div class="text-line" style="left: 98.0px; top: 753.0px; width: 584.0px; height: 24.0px;">ﺑﻤﻘﺮﺭ ﺭﻓﻊ ﺍﻟﻴﺪ ﺍﻟﺼﺪﻳﺮ ﻋﻦ ﺍﻟﻤﺪﻳﺮ ﺍﻟﻌﺎﻡ ﻟﻠﻮﻛﺎﻟﺔ ﺍﻟﻤﺴﺘﻘﻠﺔ ﺍﻟﺠﻤﺎﻋﻴﺔ ﻟﺘﻮﺯﻳﻊ ﺍﻟﻤﺎﺀ ﻭﺍﻟﻜﻬﺮﺑﺎﺀ</div>
+<div class="text-line" style="left: 609.0px; top: 779.0px; width: 72.0px; height: 15.0px;">ﺑﻔﺎﺱ.  @)</div>
+<div class="text-line" style="left: 181.0px; top: 819.0px; width: 132.0px; height: 15.0px;">ﻀﺎﺀ: ﺍﻟﻤﺪﻳﺮ ﺓ ﺍﻟﻌﺎﻣﺔ</div>
+<div class="text-line" style="left: 172.0px; top: 843.0px; width: 110.0px; height: 15.0px;">ﺪﺭﺏ ﺓ ﺍﻟ </div>
+<div class="text-line" style="left: 530.0px; top: 1006.0px; width: 224.0px; height: 11.0px;">· ﺍﻟﻤﻘﺮ : 10 ﺷﺎﺭﻉ ﻣﺤﻤﺪ ﺍﻟﻜﻐﺎﻁ - ﺹ.ﺏ : 2097 - ﻓﺎﺱ</div>
+<div class="text-line" style="left: 31.0px; top: 1010.0px; width: 263.0px; height: 9.0px;">· Siège Social : 10 rue Mohamed El Kaghat - B.P. 2097 -Fès</div>
+<div class="text-line" style="left: 526.0px; top: 1021.0px; width: 227.0px; height: 12.0px;">· التعريف الضريبى : 04500247 · الباتنتا : 13109930</div>
+<div class="text-line" style="left: 31.0px; top: 1024.0px; width: 170.0px; height: 11.0px;">· I.F. : 04500247 · Patente : 13109930</div>
+<div class="text-line" style="left: 371.0px; top: 1032.0px; width: 95.0px; height: 13.0px;">5 35 72 81 1</div>
+<div class="text-line" style="left: 598.0px; top: 1036.0px; width: 154.0px; height: 11.0px;">. ﺍﻟﻬﺎﺗﻒ : 17/ 15 /16 /17 · 05 05</div>
+<div class="text-line" style="left: 31.0px; top: 1039.0px; width: 121.0px; height: 11.0px;">· Tél. 05 35 62 50 15 /16/17</div>
+<div class="text-line" style="left: 634.0px; top: 1051.0px; width: 120.0px; height: 11.0px;">05 35 62 07 95 62 50</div>
+<div class="text-line" style="left: 31.0px; top: 1054.0px; width: 97.0px; height: 10.0px;">· Fax : 05 35 62 07 95</div>
+<div class="text-line" style="left: 595.0px; top: 1066.0px; width: 158.0px; height: 11.0px;">· ﺍﻟﺒﺮﻳﺪ ﺍﻻﻟﻜﺘﺮﻭﻧﻰ : dg(a)radeef.ma</div>
+<div class="text-line" style="left: 31.0px; top: 1069.0px; width: 115.0px; height: 10.0px;">· E.mail : dg@radeef.ma</div>
+<div class="text-line" style="left: 584.0px; top: 1080.0px; width: 168.0px; height: 12.0px;">www. radeef.ma : ﺍﻟﻤﻮﻗﻊ ﺍﻻﻟﻜﺘﺮﻭﻧﻰ</div>
+<div class="text-line" style="left: 31.0px; top: 1083.0px; width: 123.0px; height: 11.0px;">· Site web: www.radeef.ma</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 59.0px; top: 41.0px; width: 161.0px; height: 16.0px;">Régie Autonome Intercommunale</div>
+<div class="text-line" style="left: 543.0px; top: 41.0px; width: 107.0px; height: 16.0px;">ﺳﺘﻘﻠﺔ ﺍﻟﺤﻤﺎﻋﻴﺔ</div>
+<div class="text-line" style="left: 36.0px; top: 65.0px; width: 208.0px; height: 16.0px;">de Distribution d'Eau et d'Electricité de Fès</div>
+<div class="text-line" style="left: 551.0px; top: 69.0px; width: 83.0px; height: 14.0px;">ﻟﻜﻬﺮ ﺑﺎﺀ ﻳﻘﺎﺳ</div>
+<div class="text-line" style="left: 342.0px; top: 239.0px; width: 129.0px; height: 19.0px;">ﺑﻄﺎﻗﺎﺕ ﺍﻟﺤﺴﺎﺑﺎﺕ</div>
+<div class="text-line" style="left: 120.0px; top: 301.0px; width: 572.0px; height: 20.0px;">ﻣﺮﺳﻮﻡ ﺭﻗﻢ 2.22.645 ﺻﺎﺩﺭ ﻓﻰ 22 ﻣﻦ ﺻﻐﺮ 1444 (19 ﺳﺒﺘﻤﺒﺮ 2022) ﺑﺎﻋﻼﻥ ﺃﻥ</div>
+<div class="text-line" style="left: 101.0px; top: 327.0px; width: 610.0px; height: 20.0px;">المنفعة العامة تقضى باتجاز قناة رئيسية للتطهير السانل بمنطقة طريق إيموزار بجماعة فاس</div>
+<div class="text-line" style="left: 205.0px; top: 353.0px; width: 404.0px; height: 25.0px;">ﺑﻌﻤﺎﻟﺔ ﻓﺎﺱ ﻭﺑﻨﺰﻉ ﻣﻠﻜﻴﺔ ﺍﻟﻘﻄﻊ ﺍﻷﺭﺿﻴﺔ ﺍﻟﻼﺯﻣﺔ ﻟﻬﺬﺍ ﺍﻟﻐﺮﺽ</div>
+<div class="text-line" style="left: 659.0px; top: 467.0px; width: 61.0px; height: 13.0px;">ﺃﺭ ﻗﺎﻡ ﺍﻟﻘﻄﻊ</div>
+<div class="text-line" style="left: 592.0px; top: 477.0px; width: 43.0px; height: 11.0px;">ﻣﺴﺎﺣﺘﻬﺎ</div>
+<div class="text-line" style="left: 118.0px; top: 485.0px; width: 49.0px; height: 14.0px;">ﺍﻟﺘﻌﻮﻳﺾ</div>
+<div class="text-line" style="left: 659.0px; top: 485.0px; width: 62.0px; height: 14.0px;">ﺍﻷﺭﺿﻴﺔ ﻓﻰ</div>
+<div class="text-line" style="left: 289.0px; top: 493.0px; width: 186.0px; height: 14.0px;">ﺃﺳﻤﺎﺀ ﺍﻟﻤﻼﻛﻴﻦ ﻭ ﺍﻟﻤﻼﻛﻴﻦ ﺍﻟﻤﻐﺘﺮﺿﻴﻦ</div>
+<div class="text-line" style="left: 581.0px; top: 496.0px; width: 67.0px; height: 11.0px;">ﺑﺎﻟﻤﺘﺮ ﺍﻟﻤﺮﺑﻊ</div>
+<div class="text-line" style="left: 99.0px; top: 503.0px; width: 88.0px; height: 14.0px;">ﺍﻟﻤﺴﺘﺤﻖ ﺑﺎﻟﺪﺭﻫﻢ</div>
+<div class="text-line" style="left: 669.0px; top: 504.0px; width: 41.0px; height: 13.0px;">ﺍﻟﺘﺼﻤﻴﻢ</div>
+<div class="text-line" style="left: 106.0px; top: 524.0px; width: 73.0px; height: 13.0px;">120 064,00</div>
+<div class="text-line" style="left: 328.0px; top: 531.0px; width: 118.0px; height: 13.0px;">ﺍﻟﺴﺒﺘﻰ ﺇﺣﺴﺎﻥ ﺑﻨﺖ ﺣﻤﻴﺪ</div>
+<div class="text-line" style="left: 592.0px; top: 531.0px; width: 45.0px; height: 14.0px;">600.32</div>
+<div class="text-line" style="left: 694.0px; top: 531.0px; width: 10.0px; height: 13.0px;">l</div>
+<div class="text-line" style="left: 120.0px; top: 558.0px; width: 45.0px; height: 13.0px;">730,00</div>
+<div class="text-line" style="left: 249.0px; top: 565.0px; width: 276.0px; height: 12.0px;">Ste SEPRONORD ﺷﺮ ﻛﺔ ﺍﻟﺘﺠﻬﻴﺰ ﻭ ﺍﻟﺘﻨﻤﻴﺔ ﻟﻠﺸﻤﺎﻝ</div>
+<div class="text-line" style="left: 693.0px; top: 565.0px; width: 11.0px; height: 14.0px;">2</div>
+<div class="text-line" style="left: 599.0px; top: 566.0px; width: 31.0px; height: 13.0px;">3.65</div>
+<div class="text-line" style="left: 107.0px; top: 593.0px; width: 70.0px; height: 13.0px;">116 834,00</div>
+<div class="text-line" style="left: 693.0px; top: 599.0px; width: 10.0px; height: 14.0px;">3</div>
+<div class="text-line" style="left: 592.0px; top: 600.0px; width: 44.0px; height: 13.0px;">584.17</div>
+<div class="text-line" style="left: 347.0px; top: 601.0px; width: 79.0px; height: 10.0px;">ﺍﻟﻤﺴﻔﺮ ﻋﺰ ﺍﻟﺪﻳﻦ</div>
+<div class="text-line" style="left: 113.0px; top: 628.0px; width: 57.0px; height: 13.0px;">4 966,00</div>
+<div class="text-line" style="left: 595.0px; top: 634.0px; width: 38.0px; height: 14.0px;">24.83</div>
+<div class="text-line" style="left: 692.0px; top: 634.0px; width: 11.0px; height: 13.0px;">4</div>
+<div class="text-line" style="left: 249.0px; top: 635.0px; width: 276.0px; height: 11.0px;">ﺷﺮ ﻛﺔ ﺍﻟﺘﺠﻬﻴﺰ ﻭ ﺍﻟﺘﻨﻤﻴﺔ ﻟﻠﺸﻤﺎﻝ  Ste SEPRONORD</div>
+<div class="text-line" style="left: 370.0px; top: 660.0px; width: 194.0px; height: 13.0px;">ﻣﺮﻳﺔ ﺍﻟﻤﺴﻔﺮ ﺑﻨﺖ ﺍﻟﻔﺎﻃﻤﻰ ﺑﻨﺴﺒﺔ 237</div>
+<div class="text-line" style="left: 373.0px; top: 678.0px; width: 188.0px; height: 13.0px;">ﺼﺒﺎﺡ ﺍﻟﻤﺴﻔﺮ ﺑﻨﺖ ﺍﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 237</div>
+<div class="text-line" style="left: 380.0px; top: 696.0px; width: 184.0px; height: 14.0px;">- ﺳﻨﺎﺀ ﺍﻟﻤﺴﻔﺮ ﺑﻨﺖ ﺍﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 237</div>
+<div class="text-line" style="left: 367.0px; top: 715.0px; width: 197.0px; height: 14.0px;">ﺍﺣﻤﺪ ﺍﻟﻌﺮﻭﺳﻲ ﺑﻦ ﺍﻟﻤﺼﻄﻔﻰ ﺑﻨﺴﺒﺔ 63</div>
+<div class="text-line" style="left: 377.0px; top: 732.0px; width: 187.0px; height: 15.0px;">ـ ﺳﻠﻤﻰ ﺍﻟﻌﺮﻭﺳﻰ ﺑﻨﺖ ﺍﺣﻤﺪ ﺑﻨﺴﺒﺔ 56</div>
+<div class="text-line" style="left: 385.0px; top: 750.0px; width: 179.0px; height: 14.0px;">ﻟﻴﻠﻰ ﺍﻟﻌﺮﻭﺳﻰ ﺑﻨﺖ ﺍﺣﻤﺪ ﺑﻨﺴﺒﺔ 56</div>
+<div class="text-line" style="left: 110.0px; top: 753.0px; width: 64.0px; height: 13.0px;">52 884,00</div>
+<div class="text-line" style="left: 693.0px; top: 759.0px; width: 9.0px; height: 13.0px;">5</div>
+<div class="text-line" style="left: 592.0px; top: 760.0px; width: 44.0px; height: 12.0px;">264.42</div>
+<div class="text-line" style="left: 373.0px; top: 768.0px; width: 191.0px; height: 14.0px;">ـ ﺻﻮﻓﻴﺎ ﺍﻟﻌﺮﻭﺳﻰ ﺑﻨﺖ ﺍﺣﻤﺪ ﺑﻨﺴﺒﺔ 56</div>
+<div class="text-line" style="left: 390.0px; top: 785.0px; width: 174.0px; height: 16.0px;">ـ ﺠﻮﺍﺩ ﺍﻟﻤﺴﻔﺮ ﺑﻦ ﺍﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 546</div>
+<div class="text-line" style="left: 365.0px; top: 804.0px; width: 199.0px; height: 12.0px;">ـ ﻧﺎﺩﻳﺔ ﻣﺴﻔﺮ ﺑﻨﺖ ﻋﺒﺪﺍﻟﺴﻼﻡ ﺑﻨﺴﺒﺔ 312</div>
+<div class="text-line" style="left: 367.0px; top: 821.0px; width: 198.0px; height: 14.0px;">- ﺧﻠﻴﻞ ﻣﺴﻔﺮ ﺑﻦ ﻋﺒﺪﺍﻟﺴﻼﻡ ﺑﻨﺴﺒﺔ 624</div>
+<div class="text-line" style="left: 371.0px; top: 839.0px; width: 193.0px; height: 14.0px;">- ﻣﺤﻤﺪ ﻣﺴﻔﺮ ﺑﻦ ﻋﺒﺪﺍﻟﺴﻼﻡ ﺑﻨﺴﺒﺔ 624</div>
+<div class="text-line" style="left: 446.0px; top: 857.0px; width: 120.0px; height: 13.0px;">ﺍﻟﻘﺎﺳﻢ ﺍﻟﻤﺸﺘﺮﻙ : 3120</div>
+<div class="text-line" style="left: 395.0px; top: 995.0px; width: 28.0px; height: 14.0px;">1/4</div>
+<div class="text-line" style="left: 530.0px; top: 1006.0px; width: 222.0px; height: 12.0px;">· ﺍﻟﻤﻘﺮ : 10 ﺷﺎﺭﻉ ﻣﺤﻤﺪ ﺍﻟﻜﻐﺎﻁ ـ ﺹ.ﺏ : 2097 - ﻓﺎﺱ</div>
+<div class="text-line" style="left: 30.0px; top: 1009.0px; width: 262.0px; height: 11.0px;">· Siège Social : 10 rue Mohamed El Kaghat - B.P. 2097 -Fè</div>
+<div class="text-line" style="left: 525.0px; top: 1021.0px; width: 227.0px; height: 13.0px;">· التعريف الضريبي : 04500247 · الباتتا : 13109930</div>
+<div class="text-line" style="left: 30.0px; top: 1024.0px; width: 171.0px; height: 11.0px;">· I.F. : 04500247 · Patente : 13109930</div>
+<div class="text-line" style="left: 597.0px; top: 1036.0px; width: 155.0px; height: 12.0px;">. ﺍﻟﻬﺎﺗﻒ : 17/ 15 / 15 /16 / 17 05</div>
+<div class="text-line" style="left: 30.0px; top: 1039.0px; width: 122.0px; height: 11.0px;">· Tél. 05 35 62 50 15 /16/17</div>
+<div class="text-line" style="left: 633.0px; top: 1051.0px; width: 119.0px; height: 11.0px;">· ﺍﻟﻔﺎﻛﺲ : 95 07 62 35 05</div>
+<div class="text-line" style="left: 30.0px; top: 1054.0px; width: 97.0px; height: 11.0px;">· Fax : 05 35 62 07 95</div>
+<div class="text-line" style="left: 592.0px; top: 1065.0px; width: 160.0px; height: 12.0px;">dg@radeef.ma : ٠ ﺍﻟﺒﺮﻳﺪ ﺍﻻﻟﻜﺘﺮﻭﻧﻰ</div>
+<div class="text-line" style="left: 30.0px; top: 1069.0px; width: 115.0px; height: 11.0px;">· E.mail : dg@radeef.ma</div>
+<div class="text-line" style="left: 583.0px; top: 1081.0px; width: 168.0px; height: 11.0px;">www. radeef.ma : · ﺍﻟﻤﻮﻗﻊ ﺍﻻﻟﻜﺘﺮﻭﻧﻰ</div>
+<div class="text-line" style="left: 30.0px; top: 1083.0px; width: 124.0px; height: 12.0px;">· Site web: www.radeef.ma</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 59.0px; top: 42.0px; width: 160.0px; height: 15.0px;">Régie Autonome Intercommunale</div>
+<div class="text-line" style="left: 36.0px; top: 64.0px; width: 207.0px; height: 16.0px;">de Distribution d'Eau et d'Electricité de Fès</div>
+<div class="text-line" style="left: 240.0px; top: 174.0px; width: 323.0px; height: 16.0px;">ـ ﻋﺒﺪ ﺍﻟﻌﺎﻟﻰ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 1.837.180800 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 255.0px; top: 193.0px; width: 306.0px; height: 14.0px;">- ﺍﺣﻤﺪ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 180800.180800 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 263.0px; top: 212.0px; width: 300.0px; height: 13.0px;">ـ ﺤﻮﺭﻳﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 918590400 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 273.0px; top: 230.0px; width: 289.0px; height: 13.0px;"> ﻧﺠﻴﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 918590400 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 274.0px; top: 246.0px; width: 288.0px; height: 16.0px;">ﻓﻮﺯﻳﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 918590400ﺟﺰ ﺀ</div>
+<div class="text-line" style="left: 276.0px; top: 264.0px; width: 285.0px; height: 16.0px;">. ﺃﻣﻨﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 918590400 ﺠﺰ ﺀ</div>
+<div class="text-line" style="left: 268.0px; top: 284.0px; width: 294.0px; height: 13.0px;">ﺭﺟﺎﺀ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 918590400 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 273.0px; top: 301.0px; width: 288.0px; height: 16.0px;">. ﻭﻓﺎﺀ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 918590400 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 283.0px; top: 319.0px; width: 276.0px; height: 16.0px;">ﻣﺤﻤﺪ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 11924640 | ﺟﺰ ﺀ</div>
+<div class="text-line" style="left: 280.0px; top: 337.0px; width: 280.0px; height: 16.0px;"> ﺇﺩﺭﻳﺲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ (1924640ﺟﺰﺀ</div>
+<div class="text-line" style="left: 245.0px; top: 356.0px; width: 313.0px; height: 14.0px;">ـ ﺻﺒﺎﺡ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 2.250546480 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 261.0px; top: 374.0px; width: 298.0px; height: 13.0px;">ﺠﻮ ﺍﺩ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 4.501.092960 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 261.0px; top: 392.0px; width: 299.0px; height: 13.0px;">ﺳﻨﺎﺀ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 2.250546480 ﺠﺰﺀ.</div>
+<div class="text-line" style="left: 259.0px; top: 411.0px; width: 303.0px; height: 12.0px;">ـ ﺳﻌﺎﺩ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 2.250546480ﺟﺰﺀ</div>
+<div class="text-line" style="left: 291.0px; top: 429.0px; width: 270.0px; height: 13.0px;">ـ ﻣﺎﺭﻳﺔ ﺑﻨﺖ ﺍﻟﻔﺎﻃﻤﻰ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 1.607533200 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 251.0px; top: 447.0px; width: 309.0px; height: 13.0px;">. هشام بن عبد الحى سعدانى حسنى بنسبة 1318472155 جزء</div>
+<div class="text-line" style="left: 267.0px; top: 464.0px; width: 293.0px; height: 14.0px;">. ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻰ ﺣﺴﻨﻰ ﺑﻨﺴﺒﺔ 10 15606405 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 269.0px; top: 482.0px; width: 292.0px; height: 14.0px;"> ﻧﺠﻴﺐ ﺑﻦ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻰ ﺣﺴﻨﻰ ﺑﻨﺴﺒﺔ 10 15606405 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 268.0px; top: 500.0px; width: 294.0px; height: 14.0px;">ـ ﻧﻔﻴﺴﺔ ﺑﻨﺖ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻰ ﺣﺴﻨﻰ ﺑﻨﺴﺒﺔ 780320255 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 266.0px; top: 519.0px; width: 295.0px; height: 13.0px;">ﺨﺪﻳﺠﺔ ﺑﻨﺖ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻰ ﺣﺴﻨﻰ ﺑﻨﺴﺒﺔ 780320255ﺟﺰﺀ</div>
+<div class="text-line" style="left: 107.0px; top: 520.0px; width: 65.0px; height: 13.0px;">64 326,00</div>
+<div class="text-line" style="left: 590.0px; top: 528.0px; width: 44.0px; height: 13.0px;">321.63</div>
+<div class="text-line" style="left: 692.0px; top: 529.0px; width: 10.0px; height: 12.0px;">6</div>
+<div class="text-line" style="left: 226.0px; top: 538.0px; width: 336.0px; height: 11.0px;">ـ ﻓﺎﻃﻤﺔ ﺍﻟﺰ ﻫﺮ ﺍﺀ ﺑﻨﺖ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻰ ﺣﺴﻨﻰ ﺑﻨﺴﺒﺔ 780320255ﺟﺰ ﺀ</div>
+<div class="text-line" style="left: 210.0px; top: 556.0px; width: 352.0px; height: 11.0px;">ﺭ ﺑﻴﻌﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﻄﻴﺐ ﻋﻠﻮﻱ ﺩﻭﻳﺮﻱ ﺑﻨﺴﺒﺔ  1752217740 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 290.0px; top: 572.0px; width: 271.0px; height: 14.0px;">ـ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺪ ﺍﻟﺴﻼﻡ ﻣﺴﻐﺮ ﺑﻨﺴﺒﺔ 4906209672 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 291.0px; top: 590.0px; width: 268.0px; height: 12.0px;">- ﺧﻠﻴﻞ ﺑﻦ ﻋﺒﺪ ﺍﻟﺴﻼﻡ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 4906209672ﺟﺰﺀ</div>
+<div class="text-line" style="left: 287.0px; top: 608.0px; width: 273.0px; height: 13.0px;">ﻧﺎﺩﻳﺔ ﺑﻨﺖ ﻋﺒﺪ ﺍﻟﺴﻼﻡ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 2453104836 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 220.0px; top: 627.0px; width: 336.0px; height: 12.0px;">ﻋﻴﺪ ﺍﻹﻻﻩ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺨﻀﻴﺮ ﺍﻟﻌﺮ ﺍﻗﻰ  ﺑﻨﺴﺒﺔ 2222211810 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 218.0px; top: 645.0px; width: 338.0px; height: 12.0px;">ﻋﺒﺪ ﺍﻟﺤﻤﻴﺪ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺨﻀﻴﺮ  ﺍﻟﻌﺮﺍﻗﻰ  ﺑﻨﺴﺒﺔ 2222211810ﺟﺰ ﺀ</div>
+<div class="text-line" style="left: 231.0px; top: 664.0px; width: 324.0px; height: 10.0px;">ﻧﺰ ﻫﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺨﻀﻴﺮ  ﺍﻟﻌﺮﺍﻗﻰ  ﺑﻨﺴﺒﺔ 111105905 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 233.0px; top: 681.0px; width: 325.0px; height: 11.0px;">ﻧﺠﺒﻴﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺨﻀﻴﺮ ﺍﻟﻌﺮﺍﻗﻰ ﺑﻨﺴﺒﺔ 105905 ﺟﺰﺀ.</div>
+<div class="text-line" style="left: 265.0px; top: 697.0px; width: 288.0px; height: 14.0px;">ﻣﺤﻤﺪ ﺧﺎﻟﺪ ﺑﻦ ﺍﺩﺭﻳﺲ ﺍﻟﻤﻨﻮﻧﻲ ﺑﻨﺴﺒﺔ 1060737300 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 293.0px; top: 716.0px; width: 262.0px; height: 14.0px;">ﻣﺤﻤﺪ ﺑﻦ ﺇﺩﺭﻳﺲ ﺍﻟﻤﻨﻮﻧﻰ ﺑﻨﺴﺒﺔ 1060737300ﺟﺰﺀ</div>
+<div class="text-line" style="left: 326.0px; top: 733.0px; width: 235.0px; height: 16.0px;">ـ ﻋﺒﺪ ﺍﻟﺤﻲ ﺑﻦ ﺇﺩﺭﻳﺲ ﺑﻨﺴﺒﺔ 972984600 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 312.0px; top: 752.0px; width: 249.0px; height: 14.0px;">ﺃﺣﻤﺪ ﺑﻦ ﺇﺩﺭﻳﺲ ﺍﻟﻤﻨﻮﻧﻰ ﺑﻨﺴﺒﺔ 972984600 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 292.0px; top: 770.0px; width: 269.0px; height: 13.0px;">- ﺤﻮﺭﻳﺔ ﺑﻨﺖ ﺇﺩﺭﻳﺲ ﺍﻟﻤﻨﻮﻧﻰ ﺑﻨﺴﺒﺔ 504042840 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 294.0px; top: 787.0px; width: 267.0px; height: 15.0px;">- ﺭﺷﻴﺪﺓ ﺑﻨﺖ ﺇﺩﺭﻳﺲ ﺍﻟﻤﻨﻮﻧﻰ ﺑﻨﺴﺒﺔ 504042840 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 305.0px; top: 807.0px; width: 256.0px; height: 11.0px;">ـ ﻗﻤﺮ ﺑﻨﺖ ﺇﺩﺭﻳﺲ ﺍﻟﻤﻨﻮﻧﻲ ﺑﻨﺴﺒﺔ 486492300 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 293.0px; top: 824.0px; width: 269.0px; height: 13.0px;">ـ ﺧﺪﻳﺠﺔ ﺑﻨﺖ ﺇﺩﺭﻳﺲ ﺍﻟﻤﻨﻮﻧﻰ ﺑﻨﺴﺒﺔ 486492300 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 266.0px; top: 841.0px; width: 296.0px; height: 13.0px;">ـ ﺷﻤﺲ ﺍﻟﻀﺤﻰ ﺑﻨﺖ ﺇﺩﺭﻳﺲ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 504042840 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 298.0px; top: 859.0px; width: 264.0px; height: 13.0px;">ـ ﻓﺎﻃﻤﺔ ﺑﻨﺖ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 6210321390 ﺟﺰﺀ.</div>
+<div class="text-line" style="left: 390.0px; top: 877.0px; width: 174.0px; height: 13.0px;">ﺍﻟﻘﺎﺳﻢ ﺍﻟﻤﺸﺘﺮﻙ : 62297988480</div>
+<div class="text-line" style="left: 392.0px; top: 992.0px; width: 27.0px; height: 12.0px;">2/4</div>
+<div class="text-line" style="left: 529.0px; top: 1004.0px; width: 225.0px; height: 12.0px;">· ﺍﻟﻤﻘﺮ : 10 ﺷﺎﺭﻉ ﻣﺤﻤﺪ ﺍﻟﻜﻐﺎﻁ ـ ﺹ ﺏ : 2097 - ﻓﺎﺱ</div>
+<div class="text-line" style="left: 31.0px; top: 1009.0px; width: 263.0px; height: 9.0px;">· Siège Social : 10 rue Mohamed El Kaghat - B.P. 2097 -Fès</div>
+<div class="text-line" style="left: 527.0px; top: 1019.0px; width: 228.0px; height: 12.0px;">· ﺍﻟﺘﻌﺮﻳﻒ ﺍﻟﻀﺮﻳﺒﻰ : 04500247 · ﺍﻟﺒﺎﺗﻨﺘﺎ : 13109930</div>
+<div class="text-line" style="left: 32.0px; top: 1023.0px; width: 168.0px; height: 11.0px;">· I.F. : 04500247 · Patente : 13109930</div>
+<div class="text-line" style="left: 599.0px; top: 1034.0px; width: 156.0px; height: 12.0px;">. ﺍﻟﻬﺎﺗﻒ : 17/ 15 / 15 / 15 35 05</div>
+<div class="text-line" style="left: 32.0px; top: 1038.0px; width: 120.0px; height: 11.0px;">· Tél. 05 35 62 50 15 /16/17</div>
+<div class="text-line" style="left: 636.0px; top: 1049.0px; width: 118.0px; height: 12.0px;">. ﺍﻟﻔﺎﻛﺲ : 95 07 62 35 05</div>
+<div class="text-line" style="left: 33.0px; top: 1053.0px; width: 96.0px; height: 11.0px;">· Fax : 05 35 62 07 95</div>
+<div class="text-line" style="left: 595.0px; top: 1065.0px; width: 159.0px; height: 11.0px;">dg@radeef.ma : · ﺍﻟﺒﺮﻳﺪ ﺍﻻﻟﻜﺘﺮﻭﻧﻲ</div>
+<div class="text-line" style="left: 32.0px; top: 1068.0px; width: 114.0px; height: 11.0px;">· E.mail : dg@radeef.ma</div>
+<div class="text-line" style="left: 585.0px; top: 1080.0px; width: 168.0px; height: 11.0px;">ﻩ ﺍﻟﻤﻮﻗﻊ ﺍﻻﻟﻜﺘﺮﻭﻧﻲ : www. radeef.ma</div>
+<div class="text-line" style="left: 34.0px; top: 1082.0px; width: 121.0px; height: 11.0px;">· Site web: www.radeef.ma</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 60.0px; top: 41.0px; width: 161.0px; height: 16.0px;">Régie Autonome Intercommunale</div>
+<div class="text-line" style="left: 36.0px; top: 64.0px; width: 209.0px; height: 16.0px;">de Distribution d'Eau et d'Electricité de Fès</div>
+<div class="text-line" style="left: 305.0px; top: 177.0px; width: 255.0px; height: 17.0px;">ـ ﺭﺟﺎﺀ ﺑﻨﺖ ﻣﺤﻤﺪ ﻋﺒﺪﻻﻭﻱ ﻣﻌﻦ ﺑﻨﺴﺒﺔ 10596 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 345.0px; top: 195.0px; width: 215.0px; height: 16.0px;">ـ ﻋﺎﺑﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 112497 ﺠﺰﺀ</div>
+<div class="text-line" style="left: 336.0px; top: 213.0px; width: 223.0px; height: 16.0px;">ـ ﻣﻬﺪﻱ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 112497 ﺍ ﺟﺰﺀ</div>
+<div class="text-line" style="left: 348.0px; top: 231.0px; width: 211.0px; height: 16.0px;">ـ ﻋﺰ ﺍﻟﺪﻳﻦ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ  112497 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 344.0px; top: 250.0px; width: 215.0px; height: 14.0px;">ـ ﺑﻬﻴﺔ ﺑﻨﺖ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 58227 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 336.0px; top: 268.0px; width: 222.0px; height: 14.0px;">ﺧﺪﻳﺠﺔ ﺑﻨﺖ ﻋﺒﺎﺱ ﻣﺴﻔﺮ  ﺑﻨﺴﺒﺔ 58227 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 102.0px; top: 277.0px; width: 70.0px; height: 13.0px;">192 524,00</div>
+<div class="text-line" style="left: 355.0px; top: 284.0px; width: 204.0px; height: 18.0px;">ـ ﺳﻴﻒ ﺍﻟﺪﻳﻦ ﺑﻦ ﺭﺷﻴﺪ ﻣﺴﻔﺮ 182491 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 587.0px; top: 288.0px; width: 45.0px; height: 13.0px;">962.62</div>
+<div class="text-line" style="left: 683.0px; top: 288.0px; width: 19.0px; height: 13.0px;">07</div>
+<div class="text-line" style="left: 374.0px; top: 305.0px; width: 183.0px; height: 13.0px;">ﻫﻨﺪ ﺑﻨﺖ ﺍﻟﺤﺴﻴﻦ ﻣﺴﻔﺮ 10572 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 361.0px; top: 323.0px; width: 191.0px; height: 14.0px;">ﺤﻤﻴﺪ ﺑﻦ ﺍﻟﻔﻀﻴﻞ ﻓﻀﻴﻠﻰ 21204 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 336.0px; top: 341.0px; width: 215.0px; height: 13.0px;">ﻣﺤﻤﺪ ﺍﻟﻔﻀﻴﻞ ﺑﻦ ﺣﻤﻴﺪ ﻓﻀﻴﻠﻰ 10596 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 374.0px; top: 359.0px; width: 178.0px; height: 14.0px;">ﺳﻌﺎﺩ ﺑﻨﺖ ﺣﻤﻴﺪ ﻓﻀﻴﻠﻰ  5298 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 378.0px; top: 377.0px; width: 175.0px; height: 14.0px;">ﻣﺮﻳﻢ ﺑﻨﺖ ﺣﻤﻴﺪ ﻓﻀﻴﻠﻰ 5298 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 421.0px; top: 396.0px; width: 139.0px; height: 11.0px;">ﺍﻟﻘﺎﺳﻢ ﺍﻟﻤﺸﺘﺮﻙ : 600.000</div>
+<div class="text-line" style="left: 107.0px; top: 411.0px; width: 57.0px; height: 14.0px;">6 034,00</div>
+<div class="text-line" style="left: 318.0px; top: 420.0px; width: 133.0px; height: 14.0px;">ﺍﻟﻤﺴﻔﺮ ﻋﺰ ﺍﻟﺪﻳﻦ ﻭ ﺷﺮﻛﺎﺅﻩ</div>
+<div class="text-line" style="left: 590.0px; top: 423.0px; width: 38.0px; height: 14.0px;">30.17</div>
+<div class="text-line" style="left: 687.0px; top: 423.0px; width: 10.0px; height: 13.0px;">8</div>
+<div class="text-line" style="left: 214.0px; top: 446.0px; width: 337.0px; height: 14.0px;">STE GS FIRST GATE ﺷﺮ ﻛﺔ ﻣﺠﻤﻮ ﻋﺔ ﻣﺪﺍﺭﺱ ﻓﻮﺭﺳﺖ ﺠﺎﺕ</div>
+<div class="text-line" style="left: 104.0px; top: 448.0px; width: 64.0px; height: 12.0px;">10 748,00</div>
+<div class="text-line" style="left: 590.0px; top: 458.0px; width: 37.0px; height: 13.0px;">53.74</div>
+<div class="text-line" style="left: 687.0px; top: 458.0px; width: 11.0px; height: 13.0px;">9</div>
+<div class="text-line" style="left: 359.0px; top: 467.0px; width: 44.0px; height: 13.0px;">SARL</div>
+<div class="text-line" style="left: 104.0px; top: 484.0px; width: 64.0px; height: 13.0px;">37 450,00</div>
+<div class="text-line" style="left: 313.0px; top: 491.0px; width: 133.0px; height: 14.0px;">ﺍﻟﻤﺴﻔﺮ ﻋﺰ ﺍﻟﺪﻳﻦ ﻭ ﺷﺮﻛﺎﺅﻩ</div>
+<div class="text-line" style="left: 586.0px; top: 494.0px; width: 44.0px; height: 13.0px;">187.25</div>
+<div class="text-line" style="left: 684.0px; top: 495.0px; width: 16.0px; height: 13.0px;">10</div>
+<div class="text-line" style="left: 333.0px; top: 517.0px; width: 95.0px; height: 14.0px;">ﺷﺮ ﻛﺔ ﺑﺎﻛﺖ ﺃﻧﻔﺴﺖ</div>
+<div class="text-line" style="left: 103.0px; top: 518.0px; width: 65.0px; height: 14.0px;">88 710,00</div>
+<div class="text-line" style="left: 585.0px; top: 530.0px; width: 44.0px; height: 13.0px;">443.55</div>
+<div class="text-line" style="left: 683.0px; top: 531.0px; width: 17.0px; height: 12.0px;">11</div>
+<div class="text-line" style="left: 313.0px; top: 554.0px; width: 133.0px; height: 14.0px;">ﺍﻟﻤﺴﻔﺮ ﻋﺰ ﺍﻟﺪﻳﻦ ﻭ ﺷﺮﻛﺎﻭﺅﻩ</div>
+<div class="text-line" style="left: 106.0px; top: 555.0px; width: 58.0px; height: 14.0px;">5 716,00</div>
+<div class="text-line" style="left: 588.0px; top: 566.0px; width: 38.0px; height: 13.0px;">28.58</div>
+<div class="text-line" style="left: 683.0px; top: 566.0px; width: 17.0px; height: 13.0px;">12</div>
+<div class="text-line" style="left: 102.0px; top: 592.0px; width: 65.0px; height: 13.0px;">17 126,00</div>
+<div class="text-line" style="left: 313.0px; top: 599.0px; width: 133.0px; height: 14.0px;">ﺍﻟﻤﺴﻔﺮ ﻋﺰ ﺍﻟﺪﻳﻦ ﻭ ﺷﺮﻛﺎﺅﻩ</div>
+<div class="text-line" style="left: 588.0px; top: 602.0px; width: 38.0px; height: 13.0px;">85.63</div>
+<div class="text-line" style="left: 683.0px; top: 602.0px; width: 16.0px; height: 13.0px;">13</div>
+<div class="text-line" style="left: 102.0px; top: 626.0px; width: 64.0px; height: 14.0px;">71 582,00</div>
+<div class="text-line" style="left: 258.0px; top: 632.0px; width: 244.0px; height: 15.0px;">ﺷﺮ ﻛﺔ ﺑﺎﻛﺖ ﺃﻧﻔﺴﺖ (ﺷﺮﻛﺔ ﺫﺍﺕ ﻣﺴﺆﻭﻟﻴﺔ ﻣﺤﺪﻭﺩﺓ)</div>
+<div class="text-line" style="left: 584.0px; top: 637.0px; width: 44.0px; height: 12.0px;">357.91</div>
+<div class="text-line" style="left: 683.0px; top: 637.0px; width: 15.0px; height: 13.0px;">14</div>
+<div class="text-line" style="left: 355.0px; top: 661.0px; width: 202.0px; height: 15.0px;">ـ ﻋﺰ ﺍﻟﺪﻳﻦ ﺗﺎﺟﻤﻮ ﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 375.0px; top: 679.0px; width: 180.0px; height: 15.0px;">- ﻓﺆﺍﺩ ﺗﺎﺟﻤﻮ ﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 372.0px; top: 697.0px; width: 181.0px; height: 15.0px;">ﻧﺒﻴﻞ ﺗﺎﺟﻤﻮﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96.</div>
+<div class="text-line" style="left: 353.0px; top: 716.0px; width: 194.0px; height: 14.0px;">ﻋﺰ ﺍﻟﺪﻳﻦ ﺗﺎﺟﻤﻮ ﻋﺘﻲ ﺑﻦ ﺍﻟﻐﺎﻟﻲ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 339.0px; top: 731.0px; width: 202.0px; height: 17.0px;">ﺤﻤﺪ ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻦ ﻋﺒﺪ ﺍﻟﻠﻄﻴﻒ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 335.0px; top: 749.0px; width: 207.0px; height: 18.0px;">ﻋﻤﺮ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻋﺒﺪ ﺍﻟﻠﻄﻴﻒ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 101.0px; top: 769.0px; width: 63.0px; height: 14.0px;">42 912,00</div>
+<div class="text-line" style="left: 341.0px; top: 769.0px; width: 206.0px; height: 14.0px;">ﺛﻮﺭﻳﺔ ﺗﺎﺟﻤﻮﻋﺘﻰ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ (1440</div>
+<div class="text-line" style="left: 582.0px; top: 779.0px; width: 46.0px; height: 13.0px;">214.56</div>
+<div class="text-line" style="left: 680.0px; top: 780.0px; width: 18.0px; height: 12.0px;">l ર</div>
+<div class="text-line" style="left: 370.0px; top: 787.0px; width: 177.0px; height: 14.0px;">ﺳﻌﺪ ﺗﺎﺟﻤﻮﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 370.0px; top: 805.0px; width: 179.0px; height: 15.0px;">ﺍﻧﻴﺲ ﺗﺎﺟﻤﻮ ﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ  ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 337.0px; top: 822.0px; width: 209.0px; height: 15.0px;">ﻣﺤﻤﺪ ﺗﻮﻓﻴﻖ ﺗﺎﺟﻤﻮ ﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 368.0px; top: 841.0px; width: 180.0px; height: 13.0px;">ﺨﺎﻟﺪ ﺗﺎﺟﻤﻮﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 339.0px; top: 858.0px; width: 205.0px; height: 14.0px;">ﺳﻠﻤﻰ ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻨﺖ ﻣﺤﻤﺪ ﻓﺮﻳﺪ ﺑﻨﺴﺒﺔ 7</div>
+<div class="text-line" style="left: 368.0px; top: 875.0px; width: 175.0px; height: 15.0px;">ﺤﻴﺎﺓ ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻨﺖ ﺍﻟﻐﺎﻟﻰ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 403.0px; top: 894.0px; width: 144.0px; height: 12.0px;">ﻣﻨﻰ ﻧﺠﻴﻢ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 385.0px; top: 995.0px; width: 28.0px; height: 13.0px;">3/4</div>
+<div class="text-line" style="left: 531.0px; top: 1005.0px; width: 224.0px; height: 13.0px;">· ﺍﻟﻤﻘﺮ : 10 ﺷﺎﺭﻉ ﻣﺤﻤﺪ ﺍﻟﻜﻐﺎﻁ ـ ﺹ ﺏ : 2097 - ﻓﺎﺱ</div>
+<div class="text-line" style="left: 32.0px; top: 1010.0px; width: 263.0px; height: 10.0px;">· Siège Social : 10 rue Mohamed El Kaghat - B.P. 2097 -Fès</div>
+<div class="text-line" style="left: 528.0px; top: 1020.0px; width: 227.0px; height: 13.0px;">· ﺍﻟﺘﻌﺮﻳﻒ ﺍﻟﻀﺮﻳﺒﻲ : 04500247 · ﺍﻟﺒﺎﺗﻨﺘﺎ : 13109930</div>
+<div class="text-line" style="left: 34.0px; top: 1024.0px; width: 167.0px; height: 11.0px;">· I.F. : 04500247 · Patente : 13109930</div>
+<div class="text-line" style="left: 599.0px; top: 1035.0px; width: 156.0px; height: 12.0px;">. ﺍﻟﻬﺎﺗﻒ : 17/ 15 / 15 / 15 62 35 05</div>
+<div class="text-line" style="left: 34.0px; top: 1039.0px; width: 120.0px; height: 11.0px;">· Tél. 05 35 62 50 15 /16/17</div>
+<div class="text-line" style="left: 636.0px; top: 1050.0px; width: 119.0px; height: 12.0px;">05 35 62 07 95 62 05</div>
+<div class="text-line" style="left: 34.0px; top: 1054.0px; width: 96.0px; height: 11.0px;">· Fax : 05 35 62 07 95</div>
+<div class="text-line" style="left: 595.0px; top: 1065.0px; width: 160.0px; height: 12.0px;">· ﺍﻟﺒﺮﻳﺪ ﺍﻻﻟﻜﺘﺮﻭﻧﻲ : dg@radeef.ma</div>
+<div class="text-line" style="left: 33.0px; top: 1069.0px; width: 114.0px; height: 11.0px;">· E.mail : dg@radeef.ma</div>
+<div class="text-line" style="left: 585.0px; top: 1081.0px; width: 168.0px; height: 10.0px;">ﻩ ﺍﻟﻤﻮﻗﻊ ﺍﻻﻟﻜﺘﺮﻭﻧﻲ : www. radeef.ma</div>
+<div class="text-line" style="left: 34.0px; top: 1083.0px; width: 122.0px; height: 12.0px;">· Site web: www.radeef.ma</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 59.0px; top: 39.0px; width: 162.0px; height: 18.0px;">Régie Autonome Intercommunale</div>
+<div class="text-line" style="left: 35.0px; top: 62.0px; width: 209.0px; height: 19.0px;">de Distribution d’Eau et d’Electricité de Fès</div>
+<div class="text-line" style="left: 345.0px; top: 178.0px; width: 218.0px; height: 14.0px;">ﺍﺩﺭﻳﺲ ﺗﺎﺟﻤﻮﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ ﻓﺮﻳﺪ ﺑﻨﺴﺒﺔ 14</div>
+<div class="text-line" style="left: 354.0px; top: 196.0px; width: 204.0px; height: 14.0px;">ﺣﻤﺰﺓ ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ ﻓﺮﻳﺪ ﺑﻨﺴﺒﺔ 14</div>
+<div class="text-line" style="left: 363.0px; top: 213.0px; width: 180.0px; height: 15.0px;">ﻥ ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻨﺖ ﻣﺤﻤﺪ ﻓﺮﻳﺪ ﺑﻨﺴﺒﺔ 7</div>
+<div class="text-line" style="left: 353.0px; top: 231.0px; width: 177.0px; height: 15.0px;">ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ ﻓﺮﻳﺪ  ﺑﻨﺴﺒﺔ 4 ]</div>
+<div class="text-line" style="left: 361.0px; top: 248.0px; width: 178.0px; height: 17.0px;">ﺍﻹﻟﻪ ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻦ ﺍﻟﻐﺎﻟﻰ  ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 380.0px; top: 269.0px; width: 153.0px; height: 12.0px;">ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 382.0px; top: 287.0px; width: 149.0px; height: 13.0px;">ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 384.0px; top: 301.0px; width: 152.0px; height: 18.0px;">ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻨﺖ ﺍﻟﻐﺎﻟﻰ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 384.0px; top: 320.0px; width: 167.0px; height: 17.0px;">ﻓﺎﺀ ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻨﺖ ﺍﻟﻐﺎﻟﻰ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 393.0px; top: 340.0px; width: 153.0px; height: 13.0px;">ﻟﻤﺔ ﺍﻟﺪﻛﺎﻧﻰ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 364.0px; top: 358.0px; width: 177.0px; height: 13.0px;">ﻄﻔﻰ ﺗﺎﺟﻤﻮ ﻋﺘﻰ ﺑﻦ ﺍﻟﻐﺎﻟﻰ. ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 449.0px; top: 376.0px; width: 94.0px; height: 13.0px;">ﻡ ﺍﻟﻤﺸﺘﺮﻙ : 2880</div>
+<div class="text-line" style="left: 112.0px; top: 394.0px; width: 64.0px; height: 15.0px;">74 322,00</div>
+<div class="text-line" style="left: 322.0px; top: 394.0px; width: 135.0px; height: 14.0px;">ﺷﺮﻛﺔ ﺑﺮﺍﺩﺭﺯ ﺑﺮﻭﻣﻮﺳﻴﻮﻥ</div>
+<div class="text-line" style="left: 594.0px; top: 394.0px; width: 43.0px; height: 14.0px;">371.61</div>
+<div class="text-line" style="left: 692.0px; top: 403.0px; width: 17.0px; height: 16.0px;">l Q</div>
+<div class="text-line" style="left: 284.0px; top: 412.0px; width: 210.0px; height: 15.0px;">STE BROTHERS PROMOTION</div>
+<div class="text-line" style="left: 692.0px; top: 431.0px; width: 17.0px; height: 15.0px;">17</div>
+<div class="text-line" style="left: 112.0px; top: 432.0px; width: 64.0px; height: 15.0px;">88 680,00</div>
+<div class="text-line" style="left: 328.0px; top: 439.0px; width: 122.0px; height: 15.0px;">ﺍﻟﻤﺮﻧﻴﺴﻰ ﺤﻤﻴﺪ ﻭﺷﺮﻛﺎﺅﻩ</div>
+<div class="text-line" style="left: 593.0px; top: 441.0px; width: 46.0px; height: 14.0px;">443.40</div>
+<div class="text-line" style="left: 329.0px; top: 467.0px; width: 122.0px; height: 13.0px;">ﺍﻟﺸﺮ ﻛﺔ ﺍﻟﻌﻘﺎﺭﻳﺔ ﺍﻟﺼﻨﻮﺑﺮ</div>
+<div class="text-line" style="left: 112.0px; top: 468.0px; width: 64.0px; height: 15.0px;">45 250,00</div>
+<div class="text-line" style="left: 593.0px; top: 476.0px; width: 45.0px; height: 15.0px;">226.25</div>
+<div class="text-line" style="left: 693.0px; top: 476.0px; width: 15.0px; height: 15.0px;">18</div>
+<div class="text-line" style="left: 269.0px; top: 485.0px; width: 241.0px; height: 16.0px;">(Ste IMMOBILIERE SANAOUBAR)</div>
+<div class="text-line" style="left: 397.0px; top: 994.0px; width: 26.0px; height: 14.0px;">4/4</div>
+<div class="text-line" style="left: 538.0px; top: 1007.0px; width: 217.0px; height: 13.0px;">• ﺍﻟﻤﻘﺮ : 10 ﺷﺎﺭﻉ ﻣﺤﻤﺪ ﺍﻟﻜﻐﺎﻁ ـ ﺹ.ﺏ : 2097 - ﻓﺎﺱ</div>
+<div class="text-line" style="left: 32.0px; top: 1010.0px; width: 247.0px; height: 11.0px;">· Siège Social : 10 rue Mohamed El Kaghat - B.P. 2097 ·</div>
+<div class="text-line" style="left: 529.0px; top: 1022.0px; width: 226.0px; height: 13.0px;">• ﺍﻟﺘﻌﺮﻳﻒ ﺍﻟﻀﺮﻳﺒﻲ : 04500247 • ﺍﻟﺒﺎﺗﺘﺘﺎ : 13109930</div>
+<div class="text-line" style="left: 33.0px; top: 1024.0px; width: 168.0px; height: 12.0px;">· I.F. : 04500247 · Patente : 13109930</div>
+<div class="text-line" style="left: 599.0px; top: 1036.0px; width: 156.0px; height: 14.0px;">• ﺍﻟﻬﺎﺗﻒ : 17/ 16/ 15 62 35 05</div>
+<div class="text-line" style="left: 34.0px; top: 1039.0px; width: 121.0px; height: 12.0px;">· Tél. 05 35 62 50 15 /16/17</div>
+<div class="text-line" style="left: 635.0px; top: 1052.0px; width: 120.0px; height: 11.0px;">05 35 62 07 95 62 35 05</div>
+<div class="text-line" style="left: 33.0px; top: 1054.0px; width: 97.0px; height: 12.0px;">· Fax : 05 35 62 07 95</div>
+<div class="text-line" style="left: 595.0px; top: 1067.0px; width: 160.0px; height: 11.0px;">· ﺍﻟﺒﺮﻳﺪ ﺍﻻﻟﻜﺘﺮﻭﻧﻲ : dg@radeef.ma</div>
+<div class="text-line" style="left: 33.0px; top: 1069.0px; width: 115.0px; height: 12.0px;">· E.mail : dg@radeef.ma</div>
+<div class="text-line" style="left: 585.0px; top: 1082.0px; width: 168.0px; height: 11.0px;">www. radeef.ma : ﺍﻟﻤﻮﻗﻊ ﺍﻻﻟﻜﺘﺮﻭﻧﻲ</div>
+<div class="text-line" style="left: 33.0px; top: 1084.0px; width: 124.0px; height: 12.0px;">· Site web: www.radeef.ma</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 360.0px; top: 89.0px; width: 98.0px; height: 17.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 58.0px; top: 90.0px; width: 180.0px; height: 16.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 731.0px; top: 94.0px; width: 27.0px; height: 12.0px;">6478</div>
+<div class="text-line" style="left: 417.0px; top: 125.0px; width: 324.0px; height: 15.0px;">ﻭ ﻋﻠﻰ ﺍﻟﻤﺮ ﺳﻮﻡ ﺭﻗﻢ 2.82.382 ﺍﻟﺼﺎﺩﺭ ﻓﻰ 2 ﺭﺟﺐ 1403 (16 ﺃﺑﺮﻳﻞ 1983)</div>
+<div class="text-line" style="left: 336.0px; top: 129.0px; width: 55.0px; height: 12.0px;">ﺭﻗﻤﺎ ﺍﻟﻘﻄﻌﺘﺎﻥ</div>
+<div class="text-line" style="left: 211.0px; top: 130.0px; width: 31.0px; height: 11.0px;">ﺍﻟﻤﺴﺎﺣﺔ</div>
+<div class="text-line" style="left: 277.0px; top: 131.0px; width: 35.0px; height: 12.0px;">ﻣﺮﺍﺟﻌﻬﻤﺎ</div>
+<div class="text-line" style="left: 73.0px; top: 137.0px; width: 108.0px; height: 12.0px;">أسماء وعناوين الملاك المفترضين</div>
+<div class="text-line" style="left: 278.0px; top: 146.0px; width: 33.0px; height: 12.0px;">ﺍﻟﻌﻘﺎﺭﻳﺔ</div>
+<div class="text-line" style="left: 535.0px; top: 146.0px; width: 223.0px; height: 19.0px;">بتطبيق القانون رقم 7.81 المشار إليه أعلاه ؛</div>
+<div class="text-line" style="left: 209.0px; top: 147.0px; width: 37.0px; height: 12.0px;">ﺑﺎﻟﻤﻠﺘﺮ ﺍﻟﻤﻠﺮﺑﻊ</div>
+<div class="text-line" style="left: 341.0px; top: 147.0px; width: 40.0px; height: 13.0px;">ﺑﺎﻟﺘﺼﻤﻴﻢ</div>
+<div class="text-line" style="left: 145.0px; top: 168.0px; width: 45.0px; height: 12.0px;">ﻋﻨﻘﺔ ﻣﺤﻤﺪ.</div>
+<div class="text-line" style="left: 273.0px; top: 168.0px; width: 41.0px; height: 14.0px;">ﻏﻴﺮ ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 210.0px; top: 169.0px; width: 32.0px; height: 11.0px;">1492 ﻡ 2</div>
+<div class="text-line" style="left: 357.0px; top: 170.0px; width: 11.0px; height: 10.0px;">1</div>
+<div class="text-line" style="left: 415.0px; top: 178.0px; width: 326.0px; height: 15.0px;">وبعد الاطلاع على مقرر مجلس جماعة تيغىى المتخذ خلال اجتماعه</div>
+<div class="text-line" style="left: 211.0px; top: 190.0px; width: 31.0px; height: 13.0px;">2984 ﻡ²</div>
+<div class="text-line" style="left: 273.0px; top: 191.0px; width: 40.0px; height: 12.0px;">ﻏﻴﺮ ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 130.0px; top: 192.0px; width: 61.0px; height: 11.0px;">ﻭﺭﺛﺔ ﻋﻨﻘﺔ ﺍﺑﺮﺍﻫﻴﻢ</div>
+<div class="text-line" style="left: 357.0px; top: 192.0px; width: 9.0px; height: 11.0px;">2</div>
+<div class="text-line" style="left: 611.0px; top: 200.0px; width: 147.0px; height: 17.0px;">ﺍﻟﻤﻨﻌﻘﺪ ﺑﺘﺎﺭﻳﺦ 21 ﻣﺎﻯ 2019 ؛</div>
+<div class="text-line" style="left: 196.0px; top: 222.0px; width: 64.0px; height: 13.0px;">ﺍﻟﻤﺎﺩﺓ ﺍﻟﺜﺎﻟﺜﺔ</div>
+<div class="text-line" style="left: 416.0px; top: 231.0px; width: 325.0px; height: 15.0px;">وعلى نتائج البحث الإداري المباشر من 22 ديسمبر 2021 إلى</div>
+<div class="text-line" style="left: 108.0px; top: 254.0px; width: 272.0px; height: 15.0px;">يفوض حق نزع الملكية إلى رئيس مجلس جماعة تيغمي.</div>
+<div class="text-line" style="left: 668.0px; top: 254.0px; width: 89.0px; height: 13.0px;">22 ﻓﺒﺮﺍﻳﺮ 2022 ؛</div>
+<div class="text-line" style="left: 594.0px; top: 281.0px; width: 147.0px; height: 20.0px;">ﻭﺑﺎﻗﺘﺮﺍﺡ ﻣﻦ ﻭﺯﻳﺮ ﺍﻟﺪﺍﺧﻠﻴﺔ،</div>
+<div class="text-line" style="left: 193.0px; top: 284.0px; width: 69.0px; height: 14.0px;">ﺍﻟﻤﺎﺩﺓ ﺍﻟﺮ ﺍﺑﻌﺔ</div>
+<div class="text-line" style="left: 635.0px; top: 310.0px; width: 69.0px; height: 14.0px;">ﺭﺳﻢ ﻣﺎ ﻳﻠﻲ :</div>
+<div class="text-line" style="left: 58.0px; top: 316.0px; width: 322.0px; height: 15.0px;">يعهد بتنفيذ ما جاء في هذا المرسوم، الذي ينشر بالجريدة الرسمية،</div>
+<div class="text-line" style="left: 556.0px; top: 335.0px; width: 63.0px; height: 15.0px;">ﺍﻟﻤﺎﺩﺓ ﺍﻷﻭﻟﻰ</div>
+<div class="text-line" style="left: 57.0px; top: 339.0px; width: 341.0px; height: 18.0px;">ﺇﻟﻰ ﻭﺯﻳﺮ ﺍﻟﺪﺍﺧﻠﻴﺔ ﻭﺭﺋﻴﺲ ﻣﺠﻠﺲ ﺟﻤﺎﻋﺔ ﺗﻴﻐﻤﻲ، ﻛﻞ ﻭﺍﺣﺪ ﻣﻨﻬﻤﺎ ﻓﻴﻤﺎ</div>
+<div class="text-line" style="left: 358.0px; top: 365.0px; width: 41.0px; height: 14.0px;">ﻳﺨﺼﻪ.</div>
+<div class="text-line" style="left: 416.0px; top: 365.0px; width: 325.0px; height: 16.0px;">ﻳﻌﻠﻦ ﺃﻥ ﺍﻟﻤﻨﻔﻌﺔ ﺍﻟﻌﺎﻣﺔ ﺗﻘﻀﻲ ﺑﺘﻮﺳﻴﻊ ﻓﻀﺎﺀ ﺍﻟﺴﻮﻕ ﺍﻷﺳﺒﻮﻋﻲ</div>
+<div class="text-line" style="left: 576.0px; top: 389.0px; width: 181.0px; height: 16.0px;">ﺑﻤﺮﻛﺰ ﺟﻤﺎﻋﺔ ﺗﻴﻐﻤﻲ ﺑﺈﻗﻠﻴﻢ ﺗﻴﺰﻧﻴﺖ.</div>
+<div class="text-line" style="left: 56.0px; top: 393.0px; width: 284.0px; height: 15.0px;">ﻭﺣﺮﺭ ﺑﺎﻟﺮﻳﺎﻁ ﻓﻰ 22 ﻣﻦ ﺻﻔﺮ 1444 (19 ﺳﻴﺘﻤﺒﺮ 2022).</div>
+<div class="text-line" style="left: 551.0px; top: 418.0px; width: 68.0px; height: 13.0px;">ﺍﻟﻤﺎﺩﺓ ﺍﻟﺜﺎﻧﻴﺔ</div>
+<div class="text-line" style="left: 97.0px; top: 422.0px; width: 96.0px; height: 13.0px;">ﺍﻹﻣﻀﺎﺀ : ﻋﺰﻳﺰ ﺃﺧﻨﻮﺵ.</div>
+<div class="text-line" style="left: 267.0px; top: 447.0px; width: 66.0px; height: 12.0px;">ﻭﻗﻌﻪ ﺑﺎﻟﻌﻄﻒ :</div>
+<div class="text-line" style="left: 416.0px; top: 447.0px; width: 324.0px; height: 15.0px;">ﺗﻨﺰﻉ ﺑﻨﺎﺀ ﻋﻠﻰ ﺫﻟﻚ ﻣﻠﻜﻴﺔ ﺍﻟﻘﻄﻌﺘﻴﻦ ﺍﻷﺭﺿﻴﺘﻴﻦ ﺍﻟﻼﺯﻣﺘﻴﻦ ﻟﻬﺬﺍ</div>
+<div class="text-line" style="left: 267.0px; top: 470.0px; width: 64.0px; height: 13.0px;">ﻭﺯﻳﺮ ﺍﻟﺪﺍﺧﻠﻴﺔ،</div>
+<div class="text-line" style="left: 415.0px; top: 471.0px; width: 342.0px; height: 14.0px;">الغرض، كما رسمت حدودهما بحاشية ملونة في التصميم الملحق</div>
+<div class="text-line" style="left: 529.0px; top: 493.0px; width: 228.0px; height: 17.0px;">بأصل هذا المرسوم، وعينتا في الجدول التالي :</div>
+<div class="text-line" style="left: 244.0px; top: 494.0px; width: 110.0px; height: 14.0px;">ﺍﻹﻣﻀﺎﺀ : ﻋﺒﺪ ﺍﻟﻮﺍﻓﻲ ﻟﻔﺘﻴﺖ.</div>
+<div class="text-line" style="left: 101.0px; top: 532.0px; width: 610.0px; height: 17.0px;">ﻣﺮﺳﻮﻡ ﺭﻗﻢ 2.22.645 ﺻﺎﺩﺭ ﻓﻰ 22 ﻣﻦ ﺻﻔﺮ 1444 (19 ﺳﺒﺘﻤﺒﺮ 2022) ﺑﺈﻋﻼﻥ ﺃﻥ ﺍﻟﻤﻨﻔﻌﺔ ﺍﻟﻌﺎﻣﺔ ﺗﻘﻀﻰ ﺑﺈﻧﺠﺎﺯ ﻗﻨﺎﺓ ﺭﺋﻴﺴﻴﺔ </div>
+<div class="text-line" style="left: 122.0px; top: 554.0px; width: 569.0px; height: 19.0px;">للتطهير السائل بمنطقة طريق إيموزار بجماعة فاس بعمالة فاس وبنزع ملكية القطع الأرضية اللازمة لهذا الغرض</div>
+<div class="text-line" style="left: 596.0px; top: 601.0px; width: 85.0px; height: 14.0px;">ﺭﺋﻴﺲ ﺍﻟﺤﻜﻮﻣﺔ،</div>
+<div class="text-line" style="left: 97.0px; top: 626.0px; width: 601.0px; height: 15.0px;">بناء على القانون رقم 7.81 المتعلق بنزع الملكية لأجل المنتفعة العامة وبالاحتلال المؤقت، الصادر بتنفيذه الظهير الشريف</div>
+<div class="text-line" style="left: 429.0px; top: 650.0px; width: 288.0px; height: 16.0px;">ﺭﻗﻢ 1.81.254 ﺑﺘﺎﺭﻳﺦ 11 ﻣﻦ ﺭﺟﺐ 1402 (6 ﻣﺎﻱ 1982) ؛</div>
+<div class="text-line" style="left: 114.0px; top: 679.0px; width: 586.0px; height: 16.0px;">وعلى المرسوم رقم 2.82.382 الصادر في 2 رجب 1403 (16 أبريل 1983) بتطبيق القانون رقم 7.81 المشار إليه أعلاه ؛ </div>
+<div class="text-line" style="left: 97.0px; top: 709.0px; width: 603.0px; height: 15.0px;">ﻭﻋﻠﻰ ﺍﻟﻤﺮﺳﻮﻡ ﺭﻗﻢ 2.64.394 ﺍﻟﺼﺎﺩﺭ ﻓﻰ 22 ﻣﻦ ﺟﻤﺎﺩﻯ ﺍﻷﻭﻟﻰ 1384 (29 ﺳﺒﺘﻤﺒﺮ 1964) ﺍﻟﻤﺘﻌﻠﻖ ﺑﺎﻟﻮﻛﺎﻻﺕ ﺍﻟﺠﻤﺎﻋﻴﺔ ﺍﻟﻤﺘﻤﺘﻌﺔ</div>
+<div class="text-line" style="left: 516.0px; top: 732.0px; width: 200.0px; height: 14.0px;">بالشخصية المعنونة والاستقلال المالى ؛</div>
+<div class="text-line" style="left: 97.0px; top: 761.0px; width: 603.0px; height: 16.0px;">وبعد الاطلاع على مقرر الجلس الإدارى للوكالة المستقلة لتوزيع الماء والكهرباء لفاس المتخذ خلال اجتماعه المنعقد بتاريخ</div>
+<div class="text-line" style="left: 627.0px; top: 785.0px; width: 89.0px; height: 14.0px;">3 ﺩﻳﺴﻤﺒﺮ 2020 :</div>
+<div class="text-line" style="left: 363.0px; top: 814.0px; width: 336.0px; height: 15.0px;">ﻭﻋﻠﻰ ﻧﺘﺎﺋﺞ ﺍﻟﺒﺤﺚ ﺍﻹﺩﺍﺭﻱ ﺍﻟﻤﺒﺎﺷﺮ ﻣﻦ 23 ﻣﺎﺭﺱ ﺇﻟﻰ 23 ﻣﺎﻱ 2022 ؛</div>
+<div class="text-line" style="left: 555.0px; top: 842.0px; width: 144.0px; height: 18.0px;">ﻭﺑﺎﻗﺘﺮﺍﺡ ﻣﻦ ﻭﺯﻳﺮ ﺍﻟﺪﺍﺧﻠﻴﺔ،</div>
+<div class="text-line" style="left: 598.0px; top: 868.0px; width: 67.0px; height: 17.0px;">ﺭﺳﻢ ﻣﺎ ﻳﻠﻲ :</div>
+<div class="text-line" style="left: 376.0px; top: 894.0px; width: 60.0px; height: 15.0px;">ﺍﻟﻤﺎﺩﺓ ﺍﻷﻭﻟﻰ</div>
+<div class="text-line" style="left: 128.0px; top: 926.0px; width: 570.0px; height: 12.0px;">يعلن أن المنفعة العامة تقضى بإنجاز قناة رئيسية للتطهير السائل بمنطقة طريق إيموزار بجماعة فاس بعمالة فاس.</div>
+<div class="text-line" style="left: 376.0px; top: 954.0px; width: 62.0px; height: 13.0px;">ﺍﻟﻤﺎﺩﺓ ﺍﻟﺜﺎﻧﻴﺔ</div>
+<div class="text-line" style="left: 96.0px; top: 985.0px; width: 602.0px; height: 12.0px;">تاز عبناء على ذلك، ملكية القطم الأرضية اللازمة لهذا الفرض كما رسمت حدودها بحاشية ملونة في التصميم الملحق بأصل</div>
+<div class="text-line" style="left: 522.0px; top: 1007.0px; width: 194.0px; height: 15.0px;">هذا المرسوم وعينت في الجدول التالي :</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 359.0px; top: 88.0px; width: 97.0px; height: 16.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 58.0px; top: 89.0px; width: 27.0px; height: 12.0px;">6479</div>
+<div class="text-line" style="left: 567.0px; top: 90.0px; width: 189.0px; height: 17.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 529.0px; top: 136.0px; width: 45.0px; height: 14.0px;">ﻣﺴﺎﺣﺘﻬﺎ</div>
+<div class="text-line" style="left: 677.0px; top: 138.0px; width: 68.0px; height: 12.0px;">ﺃﺭﻗﺎﻡ ﺍﻟﻘﻄﻊ</div>
+<div class="text-line" style="left: 328.0px; top: 142.0px; width: 190.0px; height: 15.0px;">أسماء وعناوين الملاكين أو المفترض</div>
+<div class="text-line" style="left: 180.0px; top: 153.0px; width: 138.0px; height: 14.0px;">| التقييدات والتحملات العقارية</div>
+<div class="text-line" style="left: 529.0px; top: 155.0px; width: 142.0px; height: 13.0px;"> مراجعها العقارية | بالمترالمربع</div>
+<div class="text-line" style="left: 678.0px; top: 157.0px; width: 63.0px; height: 12.0px;">ﺍﻷﺭﺿﻴﺔ ﻓﻰ</div>
+<div class="text-line" style="left: 392.0px; top: 164.0px; width: 61.0px; height: 15.0px;">ﺃﻧﻬﻢ ﻛﺬﻟﻚ</div>
+<div class="text-line" style="left: 681.0px; top: 177.0px; width: 55.0px; height: 9.0px;">ﺍﻟﺘﺼﻤﻴﻢ</div>
+<div class="text-line" style="left: 713.0px; top: 197.0px; width: 13.0px; height: 13.0px;">1 </div>
+<div class="text-line" style="left: 534.0px; top: 199.0px; width: 40.0px; height: 12.0px;">600.32</div>
+<div class="text-line" style="left: 600.0px; top: 199.0px; width: 71.0px; height: 14.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ ﻋﺪﺩ</div>
+<div class="text-line" style="left: 71.0px; top: 200.0px; width: 243.0px; height: 17.0px;">1 - ﺍﻟﺮﻫﻦ ﺍﻟﺮﺳﻤﻲ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 23/04/2009 (ﺳﺠﻞ : 252</div>
+<div class="text-line" style="left: 370.0px; top: 201.0px; width: 107.0px; height: 14.0px;">ﺍﻟﺴﺒﺘﻰ ﺇﺣﺴﺎﻥ ﺑﻨﺖ ﺣﻤﻴﺪ</div>
+<div class="text-line" style="left: 601.0px; top: 219.0px; width: 69.0px; height: 12.0px;">(P1)07/90984</div>
+<div class="text-line" style="left: 114.0px; top: 222.0px; width: 200.0px; height: 15.0px;">عدد: 863) من الرتبة الأولى على كافة الملك المذكور</div>
+<div class="text-line" style="left: 278.0px; top: 243.0px; width: 35.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 165.0px; top: 267.0px; width: 148.0px; height: 10.0px;">ﺍﻟﺪﻭﻟﺔ ( ﻣﺼﻠﺤﺔ ﺍﻟﺘﺴﺠﻴﻞ ﻭ ﺍﻟﺘﻤﺒﺮ).</div>
+<div class="text-line" style="left: 71.0px; top: 285.0px; width: 241.0px; height: 15.0px;">2 - ﺣﺠﺰ ﺗﺤﻔﻈﻰ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 13/11/2009 (ﺳﺠﻞ : 256</div>
+<div class="text-line" style="left: 72.0px; top: 306.0px; width: 240.0px; height: 16.0px;">عدد: 483) ضمانا لدين قدره 82000000 دهـ على كافة الملك</div>
+<div class="text-line" style="left: 277.0px; top: 329.0px; width: 36.0px; height: 11.0px;">ﺍﻟﻤﻠﺬﻛﻮﺭ</div>
+<div class="text-line" style="left: 279.0px; top: 350.0px; width: 32.0px; height: 13.0px;">ﺿﺪ:</div>
+<div class="text-line" style="left: 209.0px; top: 371.0px; width: 103.0px; height: 14.0px;">-ﺍﺣﺴﺎﻥ ﺳﺒﺘﻲ ﺑﻨﺖ ﺣﻤﻴﺪ</div>
+<div class="text-line" style="left: 278.0px; top: 433.0px; width: 34.0px; height: 13.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 71.0px; top: 454.0px; width: 241.0px; height: 16.0px;">عبد الرزاق بنشقرون - خديجة لغربسي - أمينة بنشقرون - عز</div>
+<div class="text-line" style="left: 73.0px; top: 476.0px; width: 239.0px; height: 14.0px;">ﺍﻟﺪﻳﻦ ﺑﻨﺸﻘﺮﻭﻥ - ﺃﺣﻤﺪ ﺑﻨﺸﻘﺮﻭﻥ ﻭ ﻟﻴﻠﻰ ﺍﻟﺒﺮﺟﻲ ﺍﻟﻐﺴﺎﻧﻲ</div>
+<div class="text-line" style="left: 71.0px; top: 496.0px; width: 240.0px; height: 14.0px;">3 - ﺍﻟﺮﻣﻦ ﺍﻟﺠﺒﺮﻱ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 13/06/2014 (ﺳﺠﻞ : 291</div>
+<div class="text-line" style="left: 72.0px; top: 517.0px; width: 240.0px; height: 14.0px;">عدد: 475) على كافة الملك المذكور المملوك ل احسان سبتي</div>
+<div class="text-line" style="left: 126.0px; top: 538.0px; width: 186.0px; height: 15.0px;">ﺑﻨﺖ ﺣﻤﻴﺪ ﻷﺩﺍﺀ ﻣﺒﻠﻎ ﻗﺪﺭﻩ 2607523.81 ﺩﺭﻫﻢ</div>
+<div class="text-line" style="left: 279.0px; top: 559.0px; width: 33.0px; height: 13.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 180.0px; top: 580.0px; width: 130.0px; height: 15.0px;">-مديرية الضرائب فاس تفويتات</div>
+<div class="text-line" style="left: 70.0px; top: 602.0px; width: 240.0px; height: 14.0px;">4- التقييد الإحتياطي بمقتضى مقال المقيد بتاريخ</div>
+<div class="text-line" style="left: 137.0px; top: 622.0px; width: 175.0px; height: 13.0px;">19/04/2016 (ﺳﺠﻞ : 306 ﻋﺪﺩ: 2309)</div>
+<div class="text-line" style="left: 277.0px; top: 644.0px; width: 35.0px; height: 11.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 204.0px; top: 665.0px; width: 106.0px; height: 13.0px;">-ﻋﺎﺋﺸﺔ ﺭﻭﺑﺴﻲ ﺑﻠﺖ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 280.0px; top: 686.0px; width: 32.0px; height: 12.0px;">ﺿﻠﻴﺔ ﺍﻟﻤﺘﺤﺪﺓ </div>
+<div class="text-line" style="left: 207.0px; top: 707.0px; width: 104.0px; height: 13.0px;">-ﺍﺣﺴﺎﻥ ﺳﺒﺘﻲ ﺑﻨﺖ ﺣﻤﻴﺪ</div>
+<div class="text-line" style="left: 67.0px; top: 726.0px; width: 243.0px; height: 15.0px;">5- ﺍﻟﺘﻤﺪﻳﺪ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 19/05/2016 (ﺳﺠﻞ : 308 ﻋﺪﺩ:</div>
+<div class="text-line" style="left: 69.0px; top: 747.0px; width: 241.0px; height: 15.0px;">1769) ﺑﻨﺎﺀ ﻋﻠﻰ ﺃﻣﺮ ﻗﻀﺎﺋﻲ ﻋﺪﺩ 2354/2016 ﻣﻠﻒ ﺭﻗﻢ</div>
+<div class="text-line" style="left: 70.0px; top: 768.0px; width: 242.0px; height: 15.0px;">2354/1105/2016 ﻟﻠﺘﻘﻴﻴﺪ ﺍﻹﺣﺘﻴﺎﻃﻲ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ</div>
+<div class="text-line" style="left: 146.0px; top: 789.0px; width: 166.0px; height: 14.0px;">19/04/2016 (ﺳﺠﻞ : 306 ﻋﺪﺩ: 2309)</div>
+<div class="text-line" style="left: 69.0px; top: 810.0px; width: 241.0px; height: 15.0px;">6 - التقييد الإحتياطي بمقتضى مقال المقيد بتاريخ</div>
+<div class="text-line" style="left: 146.0px; top: 831.0px; width: 164.0px; height: 14.0px;">21/03/2017 (ﺳﺠﻞ : 316 ﻋﺪﺩ: 2380)</div>
+<div class="text-line" style="left: 276.0px; top: 853.0px; width: 34.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 361.0px; top: 89.0px; width: 97.0px; height: 16.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 60.0px; top: 90.0px; width: 187.0px; height: 17.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 733.0px; top: 95.0px; width: 27.0px; height: 12.0px;">6480</div>
+<div class="text-line" style="left: 208.0px; top: 177.0px; width: 105.0px; height: 11.0px;">-ﻋﺎﺋﺸﺔ ﺭﻭﻳﺴﻲ ﺑﻨﺖ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 295.0px; top: 196.0px; width: 19.0px; height: 12.0px;">ﺿﺪ</div>
+<div class="text-line" style="left: 210.0px; top: 218.0px; width: 103.0px; height: 12.0px;">-ﺍﺣﺴﺎﻥ ﺳﻴﺘﻲ ﺑﻨﺖ ﺣﻤﻴﺪ</div>
+<div class="text-line" style="left: 72.0px; top: 237.0px; width: 242.0px; height: 15.0px;">7- ﺍﻟﺘﻤﺪﻳﺪ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 2017/04/05 ( ﺳﺠﻞ : 317 ﻋﺪﺩ :</div>
+<div class="text-line" style="left: 73.0px; top: 259.0px; width: 241.0px; height: 14.0px;">402) ﺑﻨﺎﺀ ﻋﻠﻰ ﺃﻣﺮ ﻗﻀﺎﺋﻲ ﻋﺪﺩ 2017/1563 ﻣﻠﻒ ﺭﻗﻢ</div>
+<div class="text-line" style="left: 73.0px; top: 280.0px; width: 240.0px; height: 13.0px;">2017/1105/1563 ﻟﻠﺘﻘﻴﻴﺪ ﺍﻻﺣﺘﻴﺎﻃﻲ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ</div>
+<div class="text-line" style="left: 146.0px; top: 300.0px; width: 167.0px; height: 14.0px;">2017/03/21 (ﺳﺠﻞ : 316 ﻋﺪﺩ : 2380)</div>
+<div class="text-line" style="left: 73.0px; top: 322.0px; width: 241.0px; height: 13.0px;">8- التقييد الاحتياطي بمقتضى المقال المقيد</div>
+<div class="text-line" style="left: 131.0px; top: 341.0px; width: 183.0px; height: 15.0px;">ﺑﺘﺎﺭﻳﺦ2020/01/22 ( ﺳﺠﻞ : 381 ﻋﺪﺩ: 497)</div>
+<div class="text-line" style="left: 272.0px; top: 364.0px; width: 42.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ :</div>
+<div class="text-line" style="left: 211.0px; top: 386.0px; width: 101.0px; height: 12.0px;">ﻋﺎﺋﺸﺔ ﺭﻭﻳﺴﻲ ﺑﻨﺖ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 289.0px; top: 408.0px; width: 23.0px; height: 11.0px;">ﺿﺪ:</div>
+<div class="text-line" style="left: 212.0px; top: 429.0px; width: 100.0px; height: 13.0px;">ﺍﺣﺴﺎﻥ ﺳﺒﺘﻲ ﺑﻨﺖ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 71.0px; top: 448.0px; width: 242.0px; height: 16.0px;">9- ﺍﻟﺘﻤﺪﻳﺪ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 18/02/2020 (ﺳﺠﻞ : 382 ﻋﺪﺩ:</div>
+<div class="text-line" style="left: 71.0px; top: 469.0px; width: 241.0px; height: 16.0px;">1199) ﺑﻨﺎﺀ ﻋﻠﻰ ﺃﻣﺮ ﻗﻀﺎﺋﻲ ﻋﺪﺩ 801 ﻣﻠﻒ ﺭﻗﻢ</div>
+<div class="text-line" style="left: 72.0px; top: 490.0px; width: 240.0px; height: 15.0px;">801/1105/2020 ﻟﻠﺘﻘﻴﻴﺪ ﺍﻹﺣﺘﻴﺎﻃﻲ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ</div>
+<div class="text-line" style="left: 154.0px; top: 512.0px; width: 158.0px; height: 12.0px;">22/01/2020 (ﺳﺠﻞ : 381 ﻋﺪﺩ: 497)</div>
+<div class="text-line" style="left: 713.0px; top: 552.0px; width: 10.0px; height: 13.0px;">2</div>
+<div class="text-line" style="left: 541.0px; top: 553.0px; width: 24.0px; height: 12.0px;">3.65</div>
+<div class="text-line" style="left: 599.0px; top: 553.0px; width: 72.0px; height: 12.0px;">ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 197.0px; top: 554.0px; width: 73.0px; height: 14.0px;">ﻻ ﺑﻮﺟﺪ ﺃﻱ ﺗﻘﻴﻴﺪ</div>
+<div class="text-line" style="left: 348.0px; top: 554.0px; width: 150.0px; height: 14.0px;">ﺷﺮﻛﺔ ﺍﻟﺘﺠﻬﻴﺰ ﻭﺍﻟﺘﻨﻤﻴﺔ ﻟﻠﺸﻤﺎﻝ Ste</div>
+<div class="text-line" style="left: 304.0px; top: 556.0px; width: 9.0px; height: 10.0px;">.</div>
+<div class="text-line" style="left: 390.0px; top: 574.0px; width: 66.0px; height: 14.0px;">SEPRONORD</div>
+<div class="text-line" style="left: 598.0px; top: 574.0px; width: 72.0px; height: 14.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ ﻋﺪﺩ</div>
+<div class="text-line" style="left: 616.0px; top: 594.0px; width: 54.0px; height: 13.0px;">07/149069</div>
+<div class="text-line" style="left: 645.0px; top: 615.0px; width: 25.0px; height: 13.0px;">(P1)</div>
+<div class="text-line" style="left: 713.0px; top: 637.0px; width: 10.0px; height: 12.0px;">3</div>
+<div class="text-line" style="left: 534.0px; top: 638.0px; width: 40.0px; height: 12.0px;">584.17</div>
+<div class="text-line" style="left: 596.0px; top: 639.0px; width: 74.0px; height: 10.0px;">ﻗﻄﻌﺔ ﺃﺭﺿﻴﺔ ﻏﻴﺮ</div>
+<div class="text-line" style="left: 389.0px; top: 640.0px; width: 68.0px; height: 10.0px;">المسفر عزالدين</div>
+<div class="text-line" style="left: 616.0px; top: 658.0px; width: 37.0px; height: 13.0px;">ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 536.0px; top: 679.0px; width: 33.0px; height: 13.0px;">24.83</div>
+<div class="text-line" style="left: 713.0px; top: 679.0px; width: 9.0px; height: 12.0px;">4</div>
+<div class="text-line" style="left: 346.0px; top: 680.0px; width: 151.0px; height: 14.0px;">ﺷﺮﻛﺔ ﺍﻟﺘﺠﻬﻴﺰ ﻭﺍﻟﺘﻨﻤﻴﺔ ﻟﻠﺸﻤﺎﻝ  Ste</div>
+<div class="text-line" style="left: 604.0px; top: 680.0px; width: 60.0px; height: 12.0px;">ﻣﺤﻔﻈﺔ ﺗﺤﺖ</div>
+<div class="text-line" style="left: 196.0px; top: 681.0px; width: 74.0px; height: 14.0px;">ﻻ ﻳﻮﺟﺪ ﺃﻱ ﺗﻘﻴﻴﺪ</div>
+<div class="text-line" style="left: 389.0px; top: 700.0px; width: 64.0px; height: 14.0px;">SEPRONORD</div>
+<div class="text-line" style="left: 598.0px; top: 700.0px; width: 71.0px; height: 14.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ ﻋﺪﺩ</div>
+<div class="text-line" style="left: 590.0px; top: 720.0px; width: 78.0px; height: 14.0px;">(P207/149069 )</div>
+<div class="text-line" style="left: 196.0px; top: 764.0px; width: 73.0px; height: 14.0px;">ﻻ ﻳﻮﺟﺪ ﺃﻱ ﺗﻘﻴﻴﺪ</div>
+<div class="text-line" style="left: 359.0px; top: 764.0px; width: 154.0px; height: 14.0px;">ﻣﺮﺑﺔ ﺍﻟﻤﺴﻔﺮ ﺑﻠﺖ ﺍﻟﻔﺎﻃﻌﻲ ﺑﻨﺴﺒﺔ 237</div>
+<div class="text-line" style="left: 533.0px; top: 764.0px; width: 37.0px; height: 12.0px;">264.42</div>
+<div class="text-line" style="left: 361.0px; top: 784.0px; width: 152.0px; height: 16.0px;">ﺻﺒﺎﺡ ﺍﻟﻤﺴﻔﺮ ﺑﻨﺖ ﺍﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 237</div>
+<div class="text-line" style="left: 598.0px; top: 784.0px; width: 66.0px; height: 14.0px;">ﻣﺤﻔﻈﺔ ﺗﺤﺖ</div>
+<div class="text-line" style="left: 711.0px; top: 784.0px; width: 10.0px; height: 12.0px;">5</div>
+<div class="text-line" style="left: 359.0px; top: 805.0px; width: 153.0px; height: 14.0px;">- ﺳﻨﺎﺀ ﺍﻟﻤﺴﻔﺮ ﺑﻨﺖ ﺍﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 237</div>
+<div class="text-line" style="left: 598.0px; top: 805.0px; width: 71.0px; height: 13.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ ﻋﺪﺩ</div>
+<div class="text-line" style="left: 610.0px; top: 825.0px; width: 45.0px; height: 13.0px;">F/28941</div>
+<div class="text-line" style="left: 350.0px; top: 826.0px; width: 161.0px; height: 14.0px;">- ﺍﺣﻤﺪ ﺍﻟﻌﺮﻭﻣﻲ ﺑﻦ ﺍﻟﻤﺼﻄﻔﻰ ﺑﻨﺴﺒﺔ 63</div>
+<div class="text-line" style="left: 361.0px; top: 846.0px; width: 151.0px; height: 16.0px;">- ﺳﻠﻤﻲ ﺍﻟﻌﺮﻭﺳﻲ ﺑﻨﺖ ﺍﺣﻤﺪ  ﺑﻨﺴﺒﺔ 56</div>
+<div class="text-line" style="left: 367.0px; top: 866.0px; width: 145.0px; height: 16.0px;">-ﻟﻴﻠﻰ ﺍﻟﻌﺮﻭﺳﻲ ﺑﻨﺖ ﺍﺣﻤﺪ ﺑﻨﺴﺒﺔ 56</div>
+<div class="text-line" style="left: 355.0px; top: 887.0px; width: 155.0px; height: 17.0px;">- ﺻﻮﻓﻴﺎ ﺍﻟﻌﺮﻭﺳﻲ ﺑﻨﺖ ﺍﺣﻤﺪ ﺑﻨﺴﺒﺔ 56</div>
+<div class="text-line" style="left: 366.0px; top: 909.0px; width: 146.0px; height: 14.0px;">- جواد المسفر بن امحمد بنسبة 546</div>
+<div class="text-line" style="left: 346.0px; top: 929.0px; width: 166.0px; height: 14.0px;">ﻧﺎﺩﻳﺔ ﻣﺴﻔﺮ ﺑﻨﺖ ﻋﺒﺪﺍﻟﺴﻼﻡ ﺑﻨﺴﺒﺔ 312</div>
+<div class="text-line" style="left: 345.0px; top: 949.0px; width: 168.0px; height: 17.0px;">- ﺧﻠﻴﻞ ﻣﺴﻔﺮ ﺑﻦ ﻋﺒﺪﺍﻟﺴﻼﻡ ﺑﻨﺴﺒﺔ 624</div>
+<div class="text-line" style="left: 346.0px; top: 971.0px; width: 167.0px; height: 16.0px;">- ﻣﺤﻤﺪ ﻣﺴﻔﺮ ﺑﻦ ﻋﺒﺪﺍﻟﺴﻼﻡ ﺑﻨﺴﺒﺔ 624</div>
+<div class="text-line" style="left: 416.0px; top: 992.0px; width: 98.0px; height: 13.0px;">ﺍﻟﻘﺎﺳﻢ ﺍﻟﻤﺸﺘﺮﻙ : 3120</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 360.0px; top: 89.0px; width: 98.0px; height: 16.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 59.0px; top: 91.0px; width: 27.0px; height: 11.0px;">6481</div>
+<div class="text-line" style="left: 568.0px; top: 91.0px; width: 190.0px; height: 14.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 601.0px; top: 132.0px; width: 62.0px; height: 14.0px;">ﻣﻄﻠﺐ ﺗﺤﻔﻴﻆ</div>
+<div class="text-line" style="left: 710.0px; top: 132.0px; width: 10.0px; height: 11.0px;">6</div>
+<div class="text-line" style="left: 531.0px; top: 133.0px; width: 43.0px; height: 13.0px;">321.63</div>
+<div class="text-line" style="left: 324.0px; top: 137.0px; width: 190.0px; height: 12.0px;">ﻋﺒﺪ ﺍﻟﻌﺎﻟﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 104.0px; top: 139.0px; width: 208.0px; height: 10.0px;">* ﺑﺘﺎﺭﻳﺦ 2017/01/16 (ﻛﻨﺎﺵ 20 ﻋﺪﺩ 299)  ﺻﻮﺭﺓ</div>
+<div class="text-line" style="left: 621.0px; top: 154.0px; width: 22.0px; height: 11.0px;">ﻋﺪﺩ</div>
+<div class="text-line" style="left: 424.0px; top: 157.0px; width: 90.0px; height: 10.0px;">1.837.180800 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 86.0px; top: 160.0px; width: 224.0px; height: 11.0px;">ﺷﻤﺴﻴﺔ ﻟﺮﺳﻢ ﺇﺭﺍﺛﺔ ﻭﻓﺮﻳﻀﺔ ﻋﺪﻟﻰ ﻣﺆﺭﺥ ﻓﻲ 21 ﺭﺑﻴﻊ ﺍﻷﻭﻝ</div>
+<div class="text-line" style="left: 603.0px; top: 173.0px; width: 57.0px; height: 13.0px;">R24781/07</div>
+<div class="text-line" style="left: 322.0px; top: 178.0px; width: 189.0px; height: 12.0px;">- ﺍﺣﻤﺪ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ  ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 87.0px; top: 181.0px; width: 223.0px; height: 11.0px;">1438 ﺍﻟﻤﻮﺍﻓﻖ 2016/12/21 ﻣﻀﻤﻦ ﺑﻌﺪﺩ 255 ﺻﺤﻴﻔﺔ</div>
+<div class="text-line" style="left: 418.0px; top: 198.0px; width: 95.0px; height: 10.0px;">1.837.180800 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 83.0px; top: 201.0px; width: 227.0px; height: 11.0px;">365 ﻛﻨﺎﺵ ﺍﻟﺘﺮﻛﺎﺕ ﺭﻗﻢ 73 ﻣﺮﻓﻖ ﺑﻨﺴﺨﺔ ﻣﻮﺟﺰﺓ ﻣﻦ ﺭﺳﻢ</div>
+<div class="text-line" style="left: 323.0px; top: 221.0px; width: 183.0px; height: 10.0px;">ﺣﻮﺭﻳﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 88.0px; top: 222.0px; width: 221.0px; height: 10.0px;">ﺍﻟﻮﻓﺎﺓ ﻣﺆﺭﺧﺔ ﻓﻰ 2016/12/14 ﻭﻣﻄﻠﺐ ﺗﻘﻴﻴﺪ ﻣﺆﺭﺥ ﻓﻰ</div>
+<div class="text-line" style="left: 427.0px; top: 241.0px; width: 86.0px; height: 8.0px;">918590400 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 90.0px; top: 244.0px; width: 220.0px; height: 9.0px;">2017/01/12 ﻣﻔﺎﺩ ﺍﻟﻜﻞ ﺃﻥ ﺍﻟﻬﺎﻟﻜﺔ ﺭﺑﻴﻌﺔ ﻋﻠﻮﻱ ﺩﻭﻳﺮﻱ</div>
+<div class="text-line" style="left: 323.0px; top: 262.0px; width: 189.0px; height: 11.0px;">- ﻧﺠﻴﺔ ﺑﻠﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 89.0px; top: 264.0px; width: 221.0px; height: 11.0px;">(ﻃﺎﻟﺒﺔ ﺍﻟﺘﺤﻔﻴﻆ ﺭﻗﻢ 22 ) ﻗﺪ ﺗﻮﻓﻴﺖ ﻓﺎﺣﺎﻃﺖ ﺑﺈﺭﺛﻬﺎ :</div>
+<div class="text-line" style="left: 436.0px; top: 282.0px; width: 77.0px; height: 10.0px;">918590400 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 213.0px; top: 284.0px; width: 94.0px; height: 11.0px;">- ﺃﻭﻻﺩﻫﺎ ﺍﻻﺷﻘﺎﺀ ﻭﻫﻢ:</div>
+<div class="text-line" style="left: 91.0px; top: 304.0px; width: 219.0px; height: 14.0px;">1- ﺍﻟﺴﻴﺪ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺪﺍﻟﺴﻼﻡ ﻣﺴﻔﺮ(ﻃﺎﻟﺐ ﺍﻟﺘﺤﻔﻴﻆ</div>
+<div class="text-line" style="left: 323.0px; top: 304.0px; width: 189.0px; height: 11.0px;">-ﻓﻮﺯﻳﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 434.0px; top: 323.0px; width: 79.0px; height: 11.0px;">918590400ﺟﺰﺀ</div>
+<div class="text-line" style="left: 273.0px; top: 325.0px; width: 38.0px; height: 12.0px;">ﺭﻗﻢ 23)</div>
+<div class="text-line" style="left: 85.0px; top: 345.0px; width: 226.0px; height: 13.0px;">2- ﺍﻟﺴﻴﺪﺓ ﻧﺎﺩﻳﺔ ﺑﻨﺖ ﻋﺒﺪ ﺍﻟﺴﻼﻡ ﻣﺴﻔﺮ (ﻃﺎﻟﺒﺔ ﺍﻟﺘﺤﻔﻴﻆ</div>
+<div class="text-line" style="left: 323.0px; top: 345.0px; width: 190.0px; height: 11.0px;">- ﺃﻣﻨﺔ ﺑﻠﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 435.0px; top: 365.0px; width: 79.0px; height: 10.0px;">918590400ﺟﺰﺀ</div>
+<div class="text-line" style="left: 273.0px; top: 367.0px; width: 37.0px; height: 11.0px;">ﺭﻗﻢ 24)</div>
+<div class="text-line" style="left: 323.0px; top: 387.0px; width: 189.0px; height: 11.0px;">- ﺭﺟﺎﺀ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 87.0px; top: 388.0px; width: 223.0px; height: 12.0px;">3- ﺍﻟﺴﻴﺪ ﺧﻠﻴﻞ ﺑﻦ ﻋﺒﺪ ﺍﻟﺴﻼﻡ ﻣﺴﻔﺮ (ﻃﺎﻟﺐ ﺍﻟﺘﺤﻔﻴﻆ</div>
+<div class="text-line" style="left: 432.0px; top: 407.0px; width: 82.0px; height: 10.0px;">918590400ﺟﺰﺀ</div>
+<div class="text-line" style="left: 82.0px; top: 408.0px; width: 228.0px; height: 14.0px;">ﺮﻗﻢ 25) ﻭﺭﺛﺔ ﻋﻠﻰ ﺍﻟﺸﻴﺎﻉ ﻟﻤﺠﻤﻮﻉ ﻭﺍﺟﺒﺎﺕ ﺍﻟﻬﺎﻟﻜﺔ ﻓﻰ ﺍﻟﻤﻠﻚ</div>
+<div class="text-line" style="left: 176.0px; top: 429.0px; width: 134.0px; height: 12.0px;">ﺍﻟﻤﺬﻛﻮﺭ ﻟﻠﺬﻛﺮ ﻣﺜﻞ ﺣﻆ ﺍﻻﻧﺜﻴﻴﻦ.</div>
+<div class="text-line" style="left: 318.0px; top: 429.0px; width: 194.0px; height: 10.0px;">- ﻭﻓﺎﺀ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 102.0px; top: 449.0px; width: 206.0px; height: 14.0px;">- ﺑﺘﺎﺭﻳﺦ 2019/09/27 (ﻛﻨﺎﺵ 21 ﻋﺪﺩ 66) ﻋﻘﺪ ﻫﺒﺔ</div>
+<div class="text-line" style="left: 426.0px; top: 449.0px; width: 87.0px; height: 9.0px;">918590400ﺟﺰﺀ</div>
+<div class="text-line" style="left: 79.0px; top: 470.0px; width: 230.0px; height: 14.0px;">ﺗﻮﺛﻴﻘﻲ ﺣﺮﺭ ﻓﻲ 02/26 ﻭ2019/09/24 ﻣﺮﻓﻖ ﺑﻤﻄﻠﺐ ﺗﻘﻴﻴﺪ</div>
+<div class="text-line" style="left: 323.0px; top: 470.0px; width: 189.0px; height: 12.0px;">- ﻣﺤﻤﺪ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﻴﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 442.0px; top: 490.0px; width: 72.0px; height: 10.0px;">11924640 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 85.0px; top: 491.0px; width: 222.0px; height: 13.0px;">مؤرخ في 2019/09/27 مفاده أن السيد محمد المنوني بن</div>
+<div class="text-line" style="left: 89.0px; top: 511.0px; width: 220.0px; height: 14.0px;">ادرس (طالب التحفيظ رقم 33) قد وهب كافة الواجب</div>
+<div class="text-line" style="left: 324.0px; top: 511.0px; width: 188.0px; height: 14.0px;">- ﺇﺩﺭﻳﺲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 436.0px; top: 531.0px; width: 78.0px; height: 13.0px;">11924640ﺟﺰﺀ</div>
+<div class="text-line" style="left: 82.0px; top: 533.0px; width: 228.0px; height: 13.0px;">المشاع العائد له في الملك المذكور والمقدر بـــ 1060737300</div>
+<div class="text-line" style="left: 323.0px; top: 552.0px; width: 189.0px; height: 14.0px;">- ﺻﺒﺎﺡ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ  ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 115.0px; top: 554.0px; width: 195.0px; height: 13.0px;">جزء لفائدة محمد خالد المنوني بن ادريس (طالب</div>
+<div class="text-line" style="left: 233.0px; top: 573.0px; width: 77.0px; height: 13.0px;">ﺍﻟﺘﺤﻔﻴﻆ ﺭﻗﻢ 30)</div>
+<div class="text-line" style="left: 423.0px; top: 573.0px; width: 91.0px; height: 10.0px;">2.250546480 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 90.0px; top: 594.0px; width: 220.0px; height: 14.0px;">- التعرض الجزئي المتبادل مع الملك ذى مطلب التحفيظ</div>
+<div class="text-line" style="left: 324.0px; top: 594.0px; width: 189.0px; height: 14.0px;">- ﺟﻮﺍﺩ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 82.0px; top: 615.0px; width: 227.0px; height: 14.0px;">ﻋﺪﺩ 07/24683 ﺍﻟﻤﻀﻤﻦ ﺑﺘﺎﺭﻳﺦ 2013/03/07 (ﻛﻨﺎﺵ 20</div>
+<div class="text-line" style="left: 417.0px; top: 615.0px; width: 97.0px; height: 10.0px;">4.501.092960 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 116.0px; top: 636.0px; width: 194.0px; height: 14.0px;">عدد8) والذي أعقبه تقييد هامشي ضمن بتاريخ</div>
+<div class="text-line" style="left: 316.0px; top: 637.0px; width: 196.0px; height: 10.0px;">- ﺳﻨﺎﺀ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 90.0px; top: 656.0px; width: 220.0px; height: 14.0px;">2013/10/22 (ﻛﻨﺎﺵ 20 ﻋﺪﺩ109) ﻣﻔﺎﺩﻩ ﺃﻥ ﺍﻟﺘﻌﺮﺽ</div>
+<div class="text-line" style="left: 414.0px; top: 657.0px; width: 100.0px; height: 9.0px;">2.250546480 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 90.0px; top: 678.0px; width: 220.0px; height: 13.0px;">المذكور قد أصبح ينصب على القطعة الحاملة للمعلم 1</div>
+<div class="text-line" style="left: 316.0px; top: 678.0px; width: 197.0px; height: 11.0px;">- ﻣﻌﺎﺩ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 221.0px; top: 697.0px; width: 87.0px; height: 14.0px;">ﻣﺴﺎﺣﺘﻬﺎ 13ﺁﺭ69ﺱ.</div>
+<div class="text-line" style="left: 424.0px; top: 697.0px; width: 90.0px; height: 10.0px;">2.250546480ﺟﺰﺀ</div>
+<div class="text-line" style="left: 323.0px; top: 719.0px; width: 191.0px; height: 10.0px;">- ﻣﺎﺭﻳﺔ ﺑﻨﺖ ﺍﻟﻔﺎﻃﻌﻲ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 423.0px; top: 739.0px; width: 89.0px; height: 10.0px;">1.607533200 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 322.0px; top: 760.0px; width: 190.0px; height: 12.0px;">- ﻫﺸﺎﻡ ﺑﻦ ﻋﺒﺪ ﺍﻟﺤﻲ ﺳﻌﺪﺍﻧﻲ ﺣﺴﻨﻲ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 425.0px; top: 779.0px; width: 88.0px; height: 14.0px;">1318472155 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 322.0px; top: 802.0px; width: 190.0px; height: 11.0px;">- ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻲ ﺣﺴﻨﻲ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 425.0px; top: 821.0px; width: 87.0px; height: 11.0px;">1560640510 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 318.0px; top: 841.0px; width: 194.0px; height: 14.0px;">- ﻧﺠﻴﺐ ﺑﻦ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻲ ﺣﺴﻨﻲ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 425.0px; top: 861.0px; width: 88.0px; height: 13.0px;">1560640510ﺟﺰﺀ</div>
+<div class="text-line" style="left: 322.0px; top: 883.0px; width: 190.0px; height: 11.0px;">- ﻧﻔﻴﺴﺔ ﺑﻨﺖ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻲ ﺣﺴﻨﻲ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 434.0px; top: 902.0px; width: 78.0px; height: 12.0px;">780320255 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 318.0px; top: 923.0px; width: 192.0px; height: 15.0px;">- ﺧﺪﻳﺠﺔ ﺑﻨﺖ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻲ ﺣﺴﻨﻲ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 436.0px; top: 944.0px; width: 76.0px; height: 11.0px;">780320255ﺟﺰﺀ</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 357.0px; top: 88.0px; width: 99.0px; height: 15.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 58.0px; top: 89.0px; width: 188.0px; height: 17.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 731.0px; top: 94.0px; width: 26.0px; height: 11.0px;">6482</div>
+<div class="text-line" style="left: 329.0px; top: 155.0px; width: 191.0px; height: 11.0px;">- ﻓﺎﻃﻤﺔ ﺍﻟﺰﻫﺮﺍﺀ ﺑﻨﺖ ﺍﻟﺤﺴﻦ ﺳﻌﺪﺍﻧﻲ ﺣﺴﻨﻲ</div>
+<div class="text-line" style="left: 394.0px; top: 174.0px; width: 126.0px; height: 13.0px;">ﺑﻨﺴﺒﺔ 780320255ﺟﺰﺀ</div>
+<div class="text-line" style="left: 329.0px; top: 197.0px; width: 190.0px; height: 11.0px;">- ﺭﺑﻴﻌﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﻄﻴﺐ ﻋﻠﻮﻱ ﺩﻭﻳﺮﻱ</div>
+<div class="text-line" style="left: 393.0px; top: 216.0px; width: 126.0px; height: 14.0px;">ﺑﻨﺴﺒﺔ 1752217740 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 329.0px; top: 238.0px; width: 190.0px; height: 14.0px;">- ﻣﺤﻤﺪ ﺑﻦ ﻋﺒﺪ ﺍﻟﺴﻼﻡ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 431.0px; top: 259.0px; width: 88.0px; height: 11.0px;">4906209672 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 329.0px; top: 279.0px; width: 189.0px; height: 14.0px;">- ﺧﻠﻴﻞ ﺑﻦ ﻋﺒﺪ ﺍﻟﺴﻼﻡ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 425.0px; top: 300.0px; width: 94.0px; height: 13.0px;">4906209672ﺟﺰﺀ</div>
+<div class="text-line" style="left: 329.0px; top: 322.0px; width: 189.0px; height: 12.0px;">- ﻧﺎﺩﻳﺔ ﺑﻨﺖ ﻋﺒﺪ ﺍﻟﺴﻼﻡ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 424.0px; top: 342.0px; width: 94.0px; height: 11.0px;">2453104836 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 328.0px; top: 363.0px; width: 188.0px; height: 13.0px;">- ﻋﺒﺪ ﺍﻹﻻﻩ ﺑﻦ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺨﻀﻴﺮ ﺍﻟﻌﺮﺍﻗﻲ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 424.0px; top: 385.0px; width: 95.0px; height: 10.0px;">2222211810 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 328.0px; top: 406.0px; width: 190.0px; height: 11.0px;">- عبد الحميد بن محمد بن الخضير العراقي</div>
+<div class="text-line" style="left: 398.0px; top: 425.0px; width: 120.0px; height: 14.0px;">ﺑﻨﺴﺒﺔ 2222211810ﺟﺰﺀ</div>
+<div class="text-line" style="left: 329.0px; top: 446.0px; width: 189.0px; height: 15.0px;">- ﻧﺰﻫﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺨﻀﻴﺮ ﺍﻟﻌﺮﺍﻗﻲ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 427.0px; top: 468.0px; width: 91.0px; height: 11.0px;">1111105905 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 328.0px; top: 488.0px; width: 190.0px; height: 14.0px;">- ﻧﺠﻴﺒﺔ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻦ ﺍﻟﺨﻀﻴﺮ ﺍﻟﻌﺮﺍﻕ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 422.0px; top: 510.0px; width: 96.0px; height: 10.0px;">1111105905 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 328.0px; top: 531.0px; width: 190.0px; height: 12.0px;">- محمد خالد بن إدريس المنوني بلسبة</div>
+<div class="text-line" style="left: 409.0px; top: 552.0px; width: 108.0px; height: 10.0px;">1060737300 ﺟﺰﺀ </div>
+<div class="text-line" style="left: 327.0px; top: 573.0px; width: 169.0px; height: 12.0px;">محمد بن الدرس المنوني المنوني الرباسبة</div>
+<div class="text-line" style="left: 423.0px; top: 593.0px; width: 94.0px; height: 11.0px;">1060737300ﺟﺰﺀ</div>
+<div class="text-line" style="left: 328.0px; top: 612.0px; width: 188.0px; height: 16.0px;">- ﻋﺒﺪ ﺍﻟﺤﻲ ﺑﻦ ﺇﺩﺭﻳﺲ ﺑﻨﺴﺒﺔ 972984600 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 327.0px; top: 633.0px; width: 190.0px; height: 16.0px;">-أحمد بن إدريس المنوني بنسبة 972984600</div>
+<div class="text-line" style="left: 490.0px; top: 657.0px; width: 26.0px; height: 11.0px;">ﺟﺰﺀ </div>
+<div class="text-line" style="left: 326.0px; top: 675.0px; width: 190.0px; height: 15.0px;">- حورية بنت إدرس المنونى بنسبة 504042840</div>
+<div class="text-line" style="left: 494.0px; top: 698.0px; width: 22.0px; height: 11.0px;">ﺟﺰﺀ </div>
+<div class="text-line" style="left: 326.0px; top: 717.0px; width: 190.0px; height: 14.0px;">- ﺭﺷﻴﺪﺓ ﺑﻨﺖ ﺇﺩﺭﻳﺲ ﺍﻟﻤﻨﻮﻧﻲ ﺑﻨﺴﺒﺔ 504042840</div>
+<div class="text-line" style="left: 493.0px; top: 740.0px; width: 21.0px; height: 11.0px;">ﺟﺰﺀ</div>
+<div class="text-line" style="left: 326.0px; top: 758.0px; width: 190.0px; height: 14.0px;">- ﻗﻤﺮ ﺑﻨﺖ ﺇﺩﺭﺱ ﺍﻟﻤﻨﻮﻧﻰ ﺑﻨﺴﺒﺔ 486492300</div>
+<div class="text-line" style="left: 489.0px; top: 782.0px; width: 27.0px; height: 11.0px;">ﺟﺰﺀ </div>
+<div class="text-line" style="left: 326.0px; top: 800.0px; width: 190.0px; height: 13.0px;">- خديجة بنت إدريس المنوني بنسبة</div>
+<div class="text-line" style="left: 428.0px; top: 821.0px; width: 88.0px; height: 13.0px;">486492300 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 325.0px; top: 842.0px; width: 190.0px; height: 11.0px;">- ﺷﻤﺲ ﺍﻟﻀﺤﻰ ﺑﻨﺖ ﺇﺩﺭﻳﺲ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 425.0px; top: 862.0px; width: 90.0px; height: 10.0px;">504042840 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 326.0px; top: 883.0px; width: 188.0px; height: 11.0px;">- ﻓﺎﻃﻤﺔ ﺑﻨﺖ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ</div>
+<div class="text-line" style="left: 422.0px; top: 902.0px; width: 94.0px; height: 11.0px;">6210321390 ﺟﺰﺀ.</div>
+<div class="text-line" style="left: 377.0px; top: 922.0px; width: 139.0px; height: 13.0px;">ﺍﻟﻘﺎﺳﻢ ﺍﻟﻤﺸﺘﺮﻙ : 62297988480</div>
+<div class="text-line" style="left: 365.0px; top: 923.0px; width: 11.0px; height: 11.0px;"></div>
+<div class="text-line" style="left: 708.0px; top: 942.0px; width: 16.0px; height: 11.0px;">07</div>
+<div class="text-line" style="left: 532.0px; top: 943.0px; width: 44.0px; height: 11.0px;">962.62</div>
+<div class="text-line" style="left: 601.0px; top: 943.0px; width: 67.0px; height: 12.0px;">ﻣﻄﻠﺐ ﺗﺤﻔﻴﻆ</div>
+<div class="text-line" style="left: 73.0px; top: 945.0px; width: 226.0px; height: 13.0px;">1-التعرض على حقوق مشاعة المدون بتاريخ</div>
+<div class="text-line" style="left: 324.0px; top: 945.0px; width: 193.0px; height: 12.0px;">ﺭﺟﺎﺀ ﺑﻨﺖ ﻣﺤﻤﺪ ﻋﺒﺪﻻﻭﻱ ﻣﻌﻦ ﺑﻨﺴﺒﺔ 10596</div>
+<div class="text-line" style="left: 599.0px; top: 961.0px; width: 71.0px; height: 14.0px;">ﻋﺪﺩ0/ R24683</div>
+<div class="text-line" style="left: 73.0px; top: 966.0px; width: 226.0px; height: 12.0px;">2012/06/04 (ﻛﻨﺎﺵ 20 ﻋﺪﺩ 43) ﺍﻟﺼﺎﺩﺭ ﻋﻦ ﺍﻟﺴﻴﺪﻳﻦ</div>
+<div class="text-line" style="left: 493.0px; top: 966.0px; width: 23.0px; height: 12.0px;">ﺟﺰﺀ</div>
+<div class="text-line" style="left: 628.0px; top: 984.0px; width: 13.0px; height: 12.0px;">7</div>
+<div class="text-line" style="left: 148.0px; top: 986.0px; width: 151.0px; height: 15.0px;">ﻟﺤﻜﻴﻢ ﻋﺒﺪﺍﻟﻮﻫﺎﺏ ﻭﻟﺤﻜﻴﻢ ﻋﺒﺪﷲ.</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 360.0px; top: 85.0px; width: 98.0px; height: 19.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 570.0px; top: 89.0px; width: 188.0px; height: 16.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 59.0px; top: 90.0px; width: 27.0px; height: 11.0px;">6483</div>
+<div class="text-line" style="left: 76.0px; top: 155.0px; width: 242.0px; height: 15.0px;">2- ﺍﻟﺘﻌﺮﺽ ﺍﻟﻜﻠﻰ ﺍﻟﻤﺪﻭﻥ  ﺑﺘﺎﺭﻳﺦ 2012/06(ﻛﻨﺎﺵ 20</div>
+<div class="text-line" style="left: 343.0px; top: 155.0px; width: 176.0px; height: 14.0px;">-ﻋﺎﺑﺪ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 112497 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 337.0px; top: 175.0px; width: 181.0px; height: 16.0px;">- ﻣﻬﺪﻱ ﺑﻦ ﻋﻴﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 112497 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 77.0px; top: 177.0px; width: 239.0px; height: 14.0px;">عدد 44) الصادر عن الأستاذ محمد الدباغ محامي بهيئة فاس</div>
+<div class="text-line" style="left: 348.0px; top: 196.0px; width: 170.0px; height: 13.0px;">- ﻋﺰ ﺍﻟﺪﻳﻦ ﺑﻦ ﻋﺒﺎﺱ ﻣﺴﻔﺮ 112497 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 199.0px; top: 199.0px; width: 116.0px; height: 10.0px;">ﻧﻴﺎﺑﺔ ﻋﻦ ﺍﻟﺴﻴﺪ ﻋﺒﺪﺍﻟﺮﺣﻴﻢ.</div>
+<div class="text-line" style="left: 341.0px; top: 216.0px; width: 177.0px; height: 16.0px;">- ﺑﻬﻴﺔ ﺑﻨﺖ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 58227 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 76.0px; top: 219.0px; width: 239.0px; height: 14.0px;">3- التعرض الجزني المتبادل مع الملك ذي مطلب تحفيظ رقم</div>
+<div class="text-line" style="left: 330.0px; top: 237.0px; width: 187.0px; height: 14.0px;">-ﺧﺪﻳﺠﺔ ﺑﻨﺖ ﻋﺒﺎﺱ ﻣﺴﻔﺮ ﺑﻨﺴﺒﺔ 58227 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 76.0px; top: 239.0px; width: 238.0px; height: 14.0px;">07/24781 ﺍﻟﻤﻀﻤﻦ ﺑﺘﺎﺭﻳﺦ ﺑﺘﺎﺭﻳﺦ 03/07/ 2013(ﻛﻨﺎﺵ 20</div>
+<div class="text-line" style="left: 345.0px; top: 259.0px; width: 172.0px; height: 14.0px;">- ﺳﻴﻒ ﺍﻟﺪﻳﻦ ﺑﻦ ﺭﺷﻴﺪ ﻣﺴﻔﺮ 82491 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 76.0px; top: 261.0px; width: 237.0px; height: 13.0px;">ﻋﺪﺩ 82) ﻭﺍﻟﺬﻱ ﺃﻋﻘﺒﻪ ﺗﻘﻴﻴﺪ ﻫﺎﻣﺸﻲ ﺑﺘﺎﺭﻳﺦ 2013/10/22</div>
+<div class="text-line" style="left: 363.0px; top: 278.0px; width: 155.0px; height: 16.0px;">- ﻫﻨﺪ ﺑﻨﺖ ﺍﻟﺤﺴﻴﻦ ﻣﺴﻔﺮ 10572 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 77.0px; top: 280.0px; width: 239.0px; height: 14.0px;">(كناش 20 عدد 109) مفاده أن التعرض المتبادل المذكور</div>
+<div class="text-line" style="left: 354.0px; top: 300.0px; width: 164.0px; height: 14.0px;">- ﺣﻤﻴﺪ ﺑﻦ ﺍﻟﻔﻀﻴﻞ ﻓﻀﻴﻠﻲ  21204 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 76.0px; top: 301.0px; width: 238.0px; height: 14.0px;">ﺳﻠﻔﺎ ﻗﺪ ﺃﺻﺒﺢ ﻳﻨﺼﺐ ﻋﻠﻰ ﺍﻟﻘﻄﻌﺔ ﺍﻷﺭﺿﻴﺔ ﺍﻟﺤﺎﻣﻠﺔ ﻟﻠﻤﻌﻠﻢ</div>
+<div class="text-line" style="left: 332.0px; top: 321.0px; width: 186.0px; height: 14.0px;">- ﻣﺤﻤﺪ ﺍﻟﻔﻀﻴﻞ ﺑﻦ ﺣﻤﻴﺪ ﻓﻀﻴﻠﻲ 10596 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 166.0px; top: 322.0px; width: 149.0px; height: 13.0px;">ﺭﻗﻢ 1 ﻭﺍﻟﺒﺎﻟﻐﺔ ﻣﺴﺎﺣﺘﻬﺎ 13ﺁﺭ 69 ﺱ.</div>
+<div class="text-line" style="left: 365.0px; top: 341.0px; width: 153.0px; height: 13.0px;">- ﺳﻌﺎﺩ ﺑﻨﺖ ﺣﻤﻴﺪ ﻓﻀﻴﻠﻰ 5298 ﺟﺰﺀ</div>
+<div class="text-line" style="left: 76.0px; top: 342.0px; width: 236.0px; height: 14.0px;">وتجدر الإشارة أن هذا الملك يشقه طريق ذات عرض 20م</div>
+<div class="text-line" style="left: 370.0px; top: 362.0px; width: 146.0px; height: 14.0px;">- ﻣﺮﻳﻢ ﺑﻨﺖ ﺣﻤﻴﺪ ﻓﻀﻴﻠﻲ 5298 ﺟﺰ ﺀ</div>
+<div class="text-line" style="left: 123.0px; top: 363.0px; width: 191.0px; height: 14.0px;">على حدود العلامات التالية: ب1 – ب12 وب11.</div>
+<div class="text-line" style="left: 408.0px; top: 382.0px; width: 111.0px; height: 13.0px;">ﺍﻟﻘﺎﺳﻢ ﺍﻟﻤﺸﺘﺮﻙ : 600.000</div>
+<div class="text-line" style="left: 715.0px; top: 402.0px; width: 9.0px; height: 11.0px;">8</div>
+<div class="text-line" style="left: 539.0px; top: 403.0px; width: 32.0px; height: 12.0px;">30.17</div>
+<div class="text-line" style="left: 611.0px; top: 403.0px; width: 51.0px; height: 13.0px;">ﻏﻴﺮ ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 372.0px; top: 404.0px; width: 108.0px; height: 14.0px;">المسفر عز الدين و شركاؤه</div>
+<div class="text-line" style="left: 715.0px; top: 444.0px; width: 10.0px; height: 11.0px;">9</div>
+<div class="text-line" style="left: 539.0px; top: 445.0px; width: 32.0px; height: 12.0px;">53.74</div>
+<div class="text-line" style="left: 82.0px; top: 446.0px; width: 232.0px; height: 15.0px;">1 – ﺍﻟﺮﻫﻦ ﺍﻟﺮﺳﻤﻲ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 11/17/ 2014 ( ﺳﺠﻞ:</div>
+<div class="text-line" style="left: 349.0px; top: 446.0px; width: 151.0px; height: 13.0px;">ﺷﺮﻛﺔ ﻣﺠﻤﻮﻋﺔ ﻣﺪﺍﺭﺱ ﻓﻮﺭﺳﺖ ﺟﺎﺕ</div>
+<div class="text-line" style="left: 612.0px; top: 446.0px; width: 51.0px; height: 12.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ</div>
+<div class="text-line" style="left: 627.0px; top: 465.0px; width: 22.0px; height: 12.0px;">ﻋﺪﺩ</div>
+<div class="text-line" style="left: 367.0px; top: 466.0px; width: 114.0px; height: 12.0px;">STE GS FIRST GATE SARL</div>
+<div class="text-line" style="left: 88.0px; top: 467.0px; width: 226.0px; height: 14.0px;">294 عدد: 1444) من الرتبة الأولى على كافة الملك المذكور</div>
+<div class="text-line" style="left: 609.0px; top: 485.0px; width: 55.0px; height: 13.0px;">07/139939</div>
+<div class="text-line" style="left: 282.0px; top: 487.0px; width: 32.0px; height: 11.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 173.0px; top: 509.0px; width: 141.0px; height: 11.0px;">ﺍﻟﺪﻭﻟﺔ ( ﻣﺼﻠﺤﺔ ﺍﻟﺘﺴﺠﻴﻞ ﻭﺍﻟﺘﻤﺒﺮ)</div>
+<div class="text-line" style="left: 226.0px; top: 529.0px; width: 87.0px; height: 13.0px;">ﺍﻟﺸﺮﻭﻁ ﻋﻠﻰ ﺍﻟﺮﻫﻦ :</div>
+<div class="text-line" style="left: 91.0px; top: 549.0px; width: 221.0px; height: 14.0px;">-الكل وفق الشروط والالتزامات المنصوص عليها في العقد</div>
+<div class="text-line" style="left: 712.0px; top: 568.0px; width: 15.0px; height: 12.0px;">10</div>
+<div class="text-line" style="left: 536.0px; top: 570.0px; width: 37.0px; height: 11.0px;">187.25</div>
+<div class="text-line" style="left: 610.0px; top: 570.0px; width: 52.0px; height: 12.0px;">ﻏﻴﺮ ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 369.0px; top: 571.0px; width: 109.0px; height: 12.0px;">ﺍﻟﻤﺴﻔﺮ ﻋﺰ ﺍﻟﺪﻳﻦ ﻭ ﺷﺮﻛﺎﺅﻩ</div>
+<div class="text-line" style="left: 712.0px; top: 610.0px; width: 14.0px; height: 11.0px;">11</div>
+<div class="text-line" style="left: 536.0px; top: 611.0px; width: 36.0px; height: 12.0px;">443.55</div>
+<div class="text-line" style="left: 383.0px; top: 612.0px; width: 82.0px; height: 12.0px;">ﺷﺮﻛﺔ ﺑﺎﻛﺖ ﺃﻧﻔﺴﺖ</div>
+<div class="text-line" style="left: 601.0px; top: 612.0px; width: 71.0px; height: 13.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ ﻋﺪﺩ</div>
+<div class="text-line" style="left: 199.0px; top: 614.0px; width: 74.0px; height: 13.0px;">لا يوجد أي تقييد</div>
+<div class="text-line" style="left: 608.0px; top: 630.0px; width: 54.0px; height: 13.0px;">07/150429</div>
+<div class="text-line" style="left: 708.0px; top: 652.0px; width: 21.0px; height: 11.0px;">P12</div>
+<div class="text-line" style="left: 610.0px; top: 653.0px; width: 50.0px; height: 13.0px;">ﻏﻴﺮ ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 373.0px; top: 654.0px; width: 107.0px; height: 13.0px;">ﺍﻟﻤﺴﻔﺮ ﻋﺰ ﺍﻟﺪﻳﻦ ﻭ ﺷﺮﻛﺎﺅﻩ</div>
+<div class="text-line" style="left: 538.0px; top: 654.0px; width: 31.0px; height: 11.0px;">28.58</div>
+<div class="text-line" style="left: 711.0px; top: 694.0px; width: 15.0px; height: 11.0px;">13</div>
+<div class="text-line" style="left: 372.0px; top: 695.0px; width: 109.0px; height: 13.0px;">المسفر عز الدين و شركاؤه</div>
+<div class="text-line" style="left: 538.0px; top: 695.0px; width: 31.0px; height: 11.0px;">85.63</div>
+<div class="text-line" style="left: 610.0px; top: 695.0px; width: 51.0px; height: 12.0px;">ﻏﻴﺮ ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 711.0px; top: 735.0px; width: 15.0px; height: 12.0px;">14</div>
+<div class="text-line" style="left: 535.0px; top: 736.0px; width: 37.0px; height: 12.0px;">357.91</div>
+<div class="text-line" style="left: 382.0px; top: 758.0px; width: 83.0px; height: 12.0px;">ﺷﺮﻛﺔ ﺑﺎﻛﺖ ﺃﻧﻔﺴﺖ</div>
+<div class="text-line" style="left: 601.0px; top: 758.0px; width: 69.0px; height: 13.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ ﻋﺪﺩ</div>
+<div class="text-line" style="left: 233.0px; top: 760.0px; width: 79.0px; height: 12.0px;">- ﻻ ﻳﻮﺟﺪ ﺃﻱ ﺗﻘﻴﻴﺪ</div>
+<div class="text-line" style="left: 608.0px; top: 776.0px; width: 54.0px; height: 13.0px;">07/150429</div>
+<div class="text-line" style="left: 363.0px; top: 778.0px; width: 119.0px; height: 14.0px;">ﺷﺮﻛﺔ ﺫﺍﺕ ﻣﺴﺆﻭﻟﻴﺔ ﻣﺤﺪﻭﺩﺓ</div>
+<div class="text-line" style="left: 711.0px; top: 817.0px; width: 14.0px; height: 12.0px;">15</div>
+<div class="text-line" style="left: 535.0px; top: 819.0px; width: 38.0px; height: 11.0px;">214.56</div>
+<div class="text-line" style="left: 606.0px; top: 819.0px; width: 56.0px; height: 11.0px;">ﻣﺤﻔﻈﺔ ﺗﺤﺖ</div>
+<div class="text-line" style="left: 70.0px; top: 820.0px; width: 242.0px; height: 13.0px;">1 - ﺍﻟﺘﻘﻴﻴﺪ ﺍﻹﺣﺘﻴﺎﻃﻲ ﺑﻤﻘﺘﻀﻰ ﻣﻘﺎﻝ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ</div>
+<div class="text-line" style="left: 352.0px; top: 820.0px; width: 164.0px; height: 13.0px;">ﻋﺰ ﺍﻟﺪﻳﻦ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 70.0px; top: 839.0px; width: 242.0px; height: 13.0px;">24/04/2006 (ﺳﺠﻞ : 219 ﻋﺪﺩ: 230) ﻓﻰ ﺍﻧﺘﻈﺎﺭ ﺻﺪﻭﺭ ﺣﻜﻢ</div>
+<div class="text-line" style="left: 365.0px; top: 839.0px; width: 149.0px; height: 14.0px;">- ﻓﺆﺍﺩ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 599.0px; top: 839.0px; width: 71.0px; height: 13.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ ﻋﺪﺩ</div>
+<div class="text-line" style="left: 610.0px; top: 858.0px; width: 49.0px; height: 13.0px;">07/32258</div>
+<div class="text-line" style="left: 177.0px; top: 860.0px; width: 134.0px; height: 13.0px;">ﻧﻬﺎﺋﻰ ﺑﺎﻟﺘﺤﺠﻴﺮ ﻋﻠﻰ ﺍﻟﻤﺎﻟﻚ ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 364.0px; top: 860.0px; width: 151.0px; height: 15.0px;">- ﻧﺒﻴﻞ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 166.0px; top: 881.0px; width: 144.0px; height: 12.0px;">- ﻋﺒﺪ ﺍﻟﻠﻄﻴﻒ ﺍﻟﺘﺎﺟﻤﻮﻋﺘﻰ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 351.0px; top: 881.0px; width: 164.0px; height: 13.0px;">- ﻋﺰ ﺍﻟﺪﻳﻦ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﺍﻟﻐﺎﻟﻲ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 332.0px; top: 900.0px; width: 180.0px; height: 16.0px;">ﻣﺤﻤﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻋﺒﺪ ﺍﻟﻠﻄﻴﻒ  ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 70.0px; top: 901.0px; width: 240.0px; height: 14.0px;">2- ﺍﻟﺘﻘﻴﻴﺪ ﺍﻹﺣﺘﻴﺎﻃﻲ ﺑﻤﻘﺘﻀﻰ ﻣﻘﺎﻝ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ</div>
+<div class="text-line" style="left: 118.0px; top: 921.0px; width: 194.0px; height: 13.0px;">28/09/2011 (ﺳﺠﻞ : 268 ﻋﺪﺩ: 1405) ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 333.0px; top: 921.0px; width: 181.0px; height: 15.0px;">- ﻋﻤﺮ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻋﺒﺪ ﺍﻟﻠﻄﻴﻒ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 345.0px; top: 943.0px; width: 170.0px; height: 13.0px;">- ﺛﻮﺭﻳﺔ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 1440</div>
+<div class="text-line" style="left: 241.0px; top: 944.0px; width: 71.0px; height: 13.0px;">-ﻋﺰﻳﺰﺓ ﺗﺎﺟﻤﻮﻋﺘﻲ</div>
+<div class="text-line" style="left: 254.0px; top: 964.0px; width: 57.0px; height: 13.0px;">ﺧﺪﻳﺠﺔ ﻣﻜﻮﺍﺭ</div>
+<div class="text-line" style="left: 362.0px; top: 964.0px; width: 153.0px; height: 13.0px;">- ﺳﻌﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 363.0px; top: 984.0px; width: 154.0px; height: 13.0px;">- ﺍﻧﻴﺲ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ  ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 265.0px; top: 985.0px; width: 47.0px; height: 12.0px;">-ﺍﻣﻞ ﻣﻜﻮﺍﺭ</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 359.0px; top: 89.0px; width: 97.0px; height: 16.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 59.0px; top: 90.0px; width: 187.0px; height: 16.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 732.0px; top: 94.0px; width: 26.0px; height: 12.0px;">6484</div>
+<div class="text-line" style="left: 338.0px; top: 135.0px; width: 184.0px; height: 15.0px;">- ﻣﺤﻤﺪ ﺗﻮﻓﻴﻖ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 365.0px; top: 156.0px; width: 155.0px; height: 14.0px;">- ﺧﺎﻟﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 239.0px; top: 158.0px; width: 79.0px; height: 11.0px;">- ﺭﺟﺎﺀ ﺍﻟﺘﺎﺟﻤﻮﻋﺘﻲ</div>
+<div class="text-line" style="left: 342.0px; top: 176.0px; width: 178.0px; height: 14.0px;">- ﺳﻠﻤﻰ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻨﺖ ﻣﺤﻤﺪ ﻓﺮﻳﺪ ﺑﻨﺴﺒﺔ 7</div>
+<div class="text-line" style="left: 74.0px; top: 177.0px; width: 242.0px; height: 14.0px;">3-ﺣﺠﺰ ﺗﺤﻔﻈﻰ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 23/09/2013(ﺳﺠﻞ : 284</div>
+<div class="text-line" style="left: 369.0px; top: 198.0px; width: 149.0px; height: 13.0px;">- ﺣﻴﺎﺓ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻨﺖ ﺍﻟﻐﺎﻟﻰ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 74.0px; top: 199.0px; width: 244.0px; height: 13.0px;">ﻋﺪﺩ: 1593) ﺿﻤﺎﻧﺎ ﻟﺪﻳﻦ ﻗﺪﺭﻩ 20000000 ﺩﻫـ ﻋﻠﻰ ﻛﺎﻓﺔ ﺍﻟﻤﻠﻚ</div>
+<div class="text-line" style="left: 391.0px; top: 219.0px; width: 129.0px; height: 13.0px;">- ﻣﻨﻰ ﻧﺠﻴﻢ ﺑﻨﺖ ﻣﺤﻤﺪ  ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 256.0px; top: 220.0px; width: 62.0px; height: 12.0px;">ﺍﻟﻤﺬﻛﻮﺭ ﺿﺪ:</div>
+<div class="text-line" style="left: 338.0px; top: 239.0px; width: 182.0px; height: 14.0px;">- ﺍﺩﺭﻳﺲ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﻓﺮﻳﺪ ﺑﻨﺴﺒﺔ 14</div>
+<div class="text-line" style="left: 178.0px; top: 242.0px; width: 139.0px; height: 11.0px;">-ﻭﺭﺛﺔ ﺍﻟﺤﺎﺝ ﻋﺒﺪ ﺍﻟﻬﺎﺩﻱ ﺗﺠﻤﻮﻋﺘﻲ</div>
+<div class="text-line" style="left: 338.0px; top: 260.0px; width: 180.0px; height: 15.0px;">- ﺣﻤﺰﺓ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﻓﺮﻳﺪ ﺑﻨﺴﺒﺔ 14</div>
+<div class="text-line" style="left: 282.0px; top: 262.0px; width: 34.0px; height: 11.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 347.0px; top: 281.0px; width: 172.0px; height: 14.0px;">- ﻓﺎﺗﻦ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻨﺖ ﻣﺤﻤﺪ ﻓﺮﻳﺪ ﺑﻨﺴﺒﺔ 7</div>
+<div class="text-line" style="left: 177.0px; top: 282.0px; width: 138.0px; height: 14.0px;">-ﻣﺤﻤﺪ ﺷﺎﻭﻧﻲ ﺑﻨﻌﺒﺪ ﷲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 84.0px; top: 303.0px; width: 229.0px; height: 14.0px;">4- ﺣﺠﺰ ﺗﺤﻔﻈﻲ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 26/01/2015 (ﺳﺠﻞ :296</div>
+<div class="text-line" style="left: 343.0px; top: 303.0px; width: 176.0px; height: 13.0px;">- ﺍﻟﻐﺎﻟﻲ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﻓﺮﻳﺪ  ﺑﻨﺴﺒﺔ 14</div>
+<div class="text-line" style="left: 350.0px; top: 323.0px; width: 169.0px; height: 14.0px;">- ﻋﺒﺪ ﺍﻹﻟﻪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﺍﻟﻐﺎﻟﻲ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 101.0px; top: 325.0px; width: 215.0px; height: 11.0px;">ﻋﺪﺩ: 1962) ﻣﻄﻠﺐ ﺗﻘﻴﻴﺪ ﻏﻴﺮ ﻣﺆﺭﺥ ﺿﻤﺎﻧﺎ ﻟﺪﻳﻦ ﻗﺪﺭﻩ</div>
+<div class="text-line" style="left: 163.0px; top: 344.0px; width: 154.0px; height: 14.0px;">35000000 ﺩﻫ ﻛﺎﻓﺔ ﺍﻟﺤﻘﻮﻕ ﺍﻟﻤﺸﺎﻋﺔ</div>
+<div class="text-line" style="left: 362.0px; top: 344.0px; width: 157.0px; height: 14.0px;">- ﻣﺤﻤﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 362.0px; top: 364.0px; width: 156.0px; height: 15.0px;">- ﻫﺸﺎﻡ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 189.0px; top: 366.0px; width: 126.0px; height: 14.0px;">-ﻋﺰ ﺍﻟﺪﻳﻦ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 375.0px; top: 385.0px; width: 144.0px; height: 13.0px;">-ﻟﻴﻠﻰ ﺗﺎﺟﻤﻮﻋﺘﻰ ﺑﻨﺖ ﺍﻟﻐﺎﻟﻰ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 176.0px; top: 386.0px; width: 140.0px; height: 14.0px;">-ﻣﺤﻤﺪ ﺗﻮﻓﻴﻖ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 372.0px; top: 406.0px; width: 146.0px; height: 14.0px;">- ﻭﻓﺎﺀ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻨﺖ ﺍﻟﻐﺎﻟﻰ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 207.0px; top: 408.0px; width: 108.0px; height: 13.0px;">-ﺧﺎﻟﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 371.0px; top: 426.0px; width: 148.0px; height: 14.0px;">- ﻓﺎﻃﻤﺔ ﺍﻟﺪﻛﺎﻧﻰ ﺑﻨﺖ ﻣﺤﻤﺪ ﺑﻨﺴﺒﺔ 8</div>
+<div class="text-line" style="left: 183.0px; top: 429.0px; width: 132.0px; height: 14.0px;">-محمد فريد تاجموعتي بن الغالى</div>
+<div class="text-line" style="left: 356.0px; top: 448.0px; width: 163.0px; height: 14.0px;">-ﻣﺼﻄﻔﻰ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﺍﻟﻐﺎﻟﻲ. ﺑﻨﺴﺒﺔ 96</div>
+<div class="text-line" style="left: 185.0px; top: 451.0px; width: 133.0px; height: 11.0px;">-ﻋﺒﺪ ﺍﻹﻟﻪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﺍﻟﻐﺎﻟﻲ</div>
+<div class="text-line" style="left: 422.0px; top: 467.0px; width: 97.0px; height: 14.0px;">ﺍﻟﻘﺎﺳﻢ ﺍﻟﻤﺸﺘﺮﻙ : 2880</div>
+<div class="text-line" style="left: 197.0px; top: 470.0px; width: 117.0px; height: 14.0px;">-ﻣﺤﻤﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 202.0px; top: 493.0px; width: 112.0px; height: 10.0px;">-ﻫﺸﺎﻡ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 192.0px; top: 512.0px; width: 120.0px; height: 14.0px;">-مصطفى تاجموعتي بن الغالى</div>
+<div class="text-line" style="left: 207.0px; top: 532.0px; width: 106.0px; height: 14.0px;">-ﻓﺆﺍﺩ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 208.0px; top: 553.0px; width: 105.0px; height: 14.0px;">-ﻧﺒﻴﻞ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 188.0px; top: 574.0px; width: 125.0px; height: 14.0px;">- ﻋﺰﺍﻟﺪﻳﻦ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﺍﻟﻐﺎﻟﻲ</div>
+<div class="text-line" style="left: 193.0px; top: 596.0px; width: 120.0px; height: 11.0px;">-ﺛﻮﺭﻳﺔ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻠﺖ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 205.0px; top: 615.0px; width: 107.0px; height: 15.0px;">-ﺳﻌﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 203.0px; top: 638.0px; width: 111.0px; height: 11.0px;">-ﺍﻧﻴﺲ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 277.0px; top: 657.0px; width: 38.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 113.0px; top: 677.0px; width: 200.0px; height: 14.0px;">-محمد تاجموعتي بن عبد اللطيف (المذكورة أعلاه)</div>
+<div class="text-line" style="left: 117.0px; top: 696.0px; width: 196.0px; height: 17.0px;">-ﻋﻤﺮ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻋﺒﺪ ﺍﻟﻠﻄﻴﻒ (ﺍﻟﻤﺬﻛﻮﺭﺓ ﺃﻋﻼﻩ)</div>
+<div class="text-line" style="left: 83.0px; top: 717.0px; width: 230.0px; height: 16.0px;">5--الرمن الجبري المقيد بتاريخ 05/03/2015 (سجل :297</div>
+<div class="text-line" style="left: 83.0px; top: 739.0px; width: 229.0px; height: 14.0px;">عدد: 2098)، ضمانا لدين مبلغه مائة و ثلاثة ثلاثون الف</div>
+<div class="text-line" style="left: 115.0px; top: 759.0px; width: 198.0px; height: 14.0px;">ﺩﺭﻫﻢ (133000 ﺩﻫـ) ﻛﺎﻓﺔ ﺍﻟﺤﻘﻮﻕ ﺍﻟﻌﺎﺋﺪﺓ ﻟﻠﻤﺪﻳﻦ</div>
+<div class="text-line" style="left: 295.0px; top: 783.0px; width: 17.0px; height: 10.0px;">ﺿﺪ</div>
+<div class="text-line" style="left: 123.0px; top: 799.0px; width: 190.0px; height: 17.0px;">-نورية تاجموعتي بنت محمد ( المذكور(ة) أعلاه )</div>
+<div class="text-line" style="left: 279.0px; top: 822.0px; width: 33.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 189.0px; top: 842.0px; width: 123.0px; height: 13.0px;">-قابض ادارة الضرائب المضيق</div>
+<div class="text-line" style="left: 81.0px; top: 862.0px; width: 231.0px; height: 14.0px;">6 -حجز تحفظي المقيد بتاريخ 30/09/2015 (سجل : 301</div>
+<div class="text-line" style="left: 81.0px; top: 881.0px; width: 232.0px; height: 17.0px;">ﻋﺪﺩ: 1972) ﺿﻤﺎﻧﺎ ﻟﺪﻳﻦ ﻗﺪﺭﻩ 593000 ﺩﻫ ﻛﺎﻓﺔ ﺍﻟﺤﻘﻮﻕ</div>
+<div class="text-line" style="left: 276.0px; top: 903.0px; width: 37.0px; height: 13.0px;">ﺍﻟﻤﺸﺎﻋﺔ</div>
+<div class="text-line" style="left: 205.0px; top: 924.0px; width: 107.0px; height: 14.0px;">-ﻧﺒﻴﻞ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 275.0px; top: 945.0px; width: 38.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 358.0px; top: 89.0px; width: 99.0px; height: 18.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 59.0px; top: 91.0px; width: 27.0px; height: 11.0px;">6485</div>
+<div class="text-line" style="left: 568.0px; top: 91.0px; width: 189.0px; height: 17.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 194.0px; top: 154.0px; width: 120.0px; height: 15.0px;">-ﺍﻟﺒﻨﻚ ﺍﻟﺸﻌﺒﻲ ﻟﻔﺎﺱ - ﺗﺎﺯﺓ</div>
+<div class="text-line" style="left: 83.0px; top: 176.0px; width: 233.0px; height: 15.0px;">7 - حجز تحفظي المقيد بتاريخ 30/09/2015 (سجل : 301</div>
+<div class="text-line" style="left: 82.0px; top: 196.0px; width: 232.0px; height: 15.0px;">عدد: 1973) ضمانا لدين قدره 2000000 ده كافة الحقوق</div>
+<div class="text-line" style="left: 272.0px; top: 218.0px; width: 43.0px; height: 13.0px;">ﺍﻟﻤﺸﺎﻋﺔ</div>
+<div class="text-line" style="left: 200.0px; top: 241.0px; width: 113.0px; height: 12.0px;">-ﻧﺒﻴﻞ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 180.0px; top: 258.0px; width: 22.0px; height: 11.0px;"> ﺍﻟﻤﺘﺤ</div>
+<div class="text-line" style="left: 275.0px; top: 260.0px; width: 39.0px; height: 13.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 190.0px; top: 281.0px; width: 123.0px; height: 13.0px;">-ﺍﻟﺒﻨﻚ ﺍﻟﺸﻌﺒﻲ ﻟﻔﺎﺱ - ﺗﺎﺯﺓ</div>
+<div class="text-line" style="left: 83.0px; top: 301.0px; width: 231.0px; height: 15.0px;">8 - ﺣﺠﺰ ﺗﺤﻔﻈﻲ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 14/10/2015 (ﺳﺠﻞ : 303</div>
+<div class="text-line" style="left: 82.0px; top: 322.0px; width: 231.0px; height: 15.0px;">عدد: 315) ضمانا لدين قدره 61000000 ده كافة الحقوق</div>
+<div class="text-line" style="left: 277.0px; top: 342.0px; width: 37.0px; height: 13.0px;">ﺍﻟﻤﺸﺎﻋﺔ</div>
+<div class="text-line" style="left: 199.0px; top: 365.0px; width: 114.0px; height: 13.0px;">-ﻧﺒﻴﻞ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 273.0px; top: 385.0px; width: 42.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 201.0px; top: 405.0px; width: 112.0px; height: 14.0px;">-ﺍﻟﺒﻨﻚ ﺍﻟﺸﻌﺒﻲ ﻟﻔﺎﺱ - ﺗﺎﺯﺓ</div>
+<div class="text-line" style="left: 189.0px; top: 424.0px; width: 13.0px; height: 10.0px;"></div>
+<div class="text-line" style="left: 82.0px; top: 439.0px; width: 232.0px; height: 15.0px;">9 - حجز تحفظي المقيد بتاريخ 22/10/2015 (سجل : 303</div>
+<div class="text-line" style="left: 83.0px; top: 459.0px; width: 231.0px; height: 18.0px;">ﻋﺪﺩ: 596) ﺿﻤﺎﻧﺎ ﻟﺪﻳﻦ ﻗﺪﺭﻩ 80000 ﺩﻫـ ﻋﻠﻰ ﻛﺎﻓﺔ ﺍﻟﻤﻠﻚ</div>
+<div class="text-line" style="left: 280.0px; top: 482.0px; width: 34.0px; height: 10.0px;">ﺍﻟﻤﺬﻛﻮﺭ</div>
+<div class="text-line" style="left: 282.0px; top: 497.0px; width: 31.0px; height: 11.0px;">ﺿﻠﺔ:</div>
+<div class="text-line" style="left: 187.0px; top: 512.0px; width: 126.0px; height: 11.0px;">-ﻋﺰ ﺍﻟﺪﻳﻦ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 174.0px; top: 531.0px; width: 139.0px; height: 15.0px;">-ﻣﺤﻤﺪ ﺗﻮﻓﻴﻖ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 163.0px; top: 553.0px; width: 149.0px; height: 14.0px;">-ﺧﺎﻟﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ  ﺑﻦ ﺍﻟﻐﺎﻟﻲ</div>
+<div class="text-line" style="left: 176.0px; top: 573.0px; width: 137.0px; height: 15.0px;">-محمد فريد تاجموعتي بن الغالى</div>
+<div class="text-line" style="left: 189.0px; top: 595.0px; width: 124.0px; height: 13.0px;">-عبد الإله تاجموعتي بن الغالي</div>
+<div class="text-line" style="left: 191.0px; top: 616.0px; width: 122.0px; height: 11.0px;">-ﻣﺤﻤﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 195.0px; top: 637.0px; width: 118.0px; height: 12.0px;">-ﻫﺸﺎﻡ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 191.0px; top: 656.0px; width: 122.0px; height: 14.0px;">-ﻣﺼﻄﻔﻰ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﺍﻟﻐﺎﻟﻰ</div>
+<div class="text-line" style="left: 199.0px; top: 676.0px; width: 113.0px; height: 15.0px;">-ﻓﺆﺍﺩ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 197.0px; top: 699.0px; width: 116.0px; height: 12.0px;">-ﻧﺒﻴﻞ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 197.0px; top: 718.0px; width: 115.0px; height: 14.0px;">ﻋﺰﺍﻟﺪﻳﻦ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﺍﻟﻐﺎﻟﻰ</div>
+<div class="text-line" style="left: 174.0px; top: 739.0px; width: 138.0px; height: 15.0px;">-محمد تاجموعتي بن عبد اللطيف</div>
+<div class="text-line" style="left: 174.0px; top: 759.0px; width: 139.0px; height: 15.0px;">-ﻋﻤﺮ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻋﺒﺪ ﺍﻟﻠﻄﻴﻒ</div>
+<div class="text-line" style="left: 198.0px; top: 781.0px; width: 114.0px; height: 13.0px;">-ﺋﻮﺭﻳﺔ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻨﺖ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 197.0px; top: 803.0px; width: 113.0px; height: 10.0px;">-ﺳﻌﺪ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 197.0px; top: 822.0px; width: 115.0px; height: 13.0px;">- ﺍﻧﻴﺲ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+<div class="text-line" style="left: 273.0px; top: 842.0px; width: 39.0px; height: 11.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 240.0px; top: 862.0px; width: 70.0px; height: 13.0px;">ﻣﺤﻤﺪ ﺍﻟﺪﺑﺎﻍ.</div>
+<div class="text-line" style="left: 70.0px; top: 881.0px; width: 241.0px; height: 15.0px;">10- ﺣﺠﺰ ﺗﺤﻔﻈﻲ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 04/11/2015 (ﺳﺠﻞ: 303</div>
+<div class="text-line" style="left: 70.0px; top: 900.0px; width: 241.0px; height: 18.0px;">عدد: 1273) ضمانا لدين قدره 8100000 ده على كافة الملك</div>
+<div class="text-line" style="left: 274.0px; top: 925.0px; width: 38.0px; height: 9.0px;">ﺍﻟﻤﺬﻛﻮﺭ</div>
+<div class="text-line" style="left: 279.0px; top: 945.0px; width: 32.0px; height: 12.0px;">ﺿﻠ :</div>
+<div class="text-line" style="left: 205.0px; top: 968.0px; width: 107.0px; height: 13.0px;">-ﻧﺒﻴﻞ ﺗﺎﺟﻤﻮﻋﺘﻲ ﺑﻦ ﻣﺤﻤﺪ</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 359.0px; top: 86.0px; width: 97.0px; height: 18.0px;">ﺍﻟﺠﺮﻳﺪﺓ ﺍﻟﺮﺳﻤﻴﺔ</div>
+<div class="text-line" style="left: 58.0px; top: 91.0px; width: 187.0px; height: 14.0px;">ﻋﺪﺩ 7131 - 6 ﺭﺑﻴﻊ ﺍﻷﻭﻝ 1444 (3 ﺃﻛﺘﻮﺑﺮ 2022)</div>
+<div class="text-line" style="left: 732.0px; top: 93.0px; width: 27.0px; height: 12.0px;">6486</div>
+<div class="text-line" style="left: 281.0px; top: 154.0px; width: 35.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 201.0px; top: 175.0px; width: 113.0px; height: 14.0px;">- ﺍﻟﺒﻨﻚ ﺍﻟﺸﻌﺒﻰ ﻟﻔﺎﺱ - ﺗﺎﺯﺓ</div>
+<div class="text-line" style="left: 72.0px; top: 196.0px; width: 241.0px; height: 14.0px;">11-ﺍﻟﺮﻫﻦ ﺍﻟﺠﺒﺮﻱ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 09/10/2018 (ﺳﺠﻞ : 345</div>
+<div class="text-line" style="left: 73.0px; top: 218.0px; width: 240.0px; height: 13.0px;">ﻋﺪﺩ: 197) ﻛﺎﻓﺔ ﺍﻟﺤﻘﻮﻕ ﺍﻟﻌﺎﺋﺪﺓ ﻟﻠﻤﺪﻳﻦ ﺍﻟﺴﻴﺪ ﺳﻌﺪ</div>
+<div class="text-line" style="left: 130.0px; top: 238.0px; width: 184.0px; height: 15.0px;">ﺗﺎﺟﻤﻮﻋﺘﻲ ﻻﺩﺍﺀ ﻣﺒﻠﻎ ﻗﺪﺭﻩ 678.960،00 ﺩﺭﻫﻢ</div>
+<div class="text-line" style="left: 281.0px; top: 259.0px; width: 33.0px; height: 13.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 188.0px; top: 281.0px; width: 125.0px; height: 14.0px;">.قباضة ادارة الضرائب المضيق</div>
+<div class="text-line" style="left: 72.0px; top: 301.0px; width: 240.0px; height: 14.0px;">12 - ﺍﻟﺮﻫﻦ ﺍﻟﺠﺒﺮﻱ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 05/03/2020 (ﺳﺠﻞ : 383</div>
+<div class="text-line" style="left: 72.0px; top: 323.0px; width: 240.0px; height: 13.0px;">عدد: 1001)، ضمانا لدين مبلغه مليون و سبعمائة و أربعة و</div>
+<div class="text-line" style="left: 72.0px; top: 343.0px; width: 240.0px; height: 15.0px;">ﺧﻤﺴﻮﻥ ﺍﻟﻒ ﻭ ﻣﺎﺋﺔ ﻭ ﺧﻤﺴﺔ ﻭ ﺛﻤﺎﻧﻮﻥ ﺩﺭﻫﻢ ﻭ ﺳﺒﻌﻮﻥ</div>
+<div class="text-line" style="left: 72.0px; top: 364.0px; width: 240.0px; height: 14.0px;">ﺳﻨﺘﻴﻤﺎ (1754185 ﺩﻫـ) ﻛﺎﻓﺔ ﺍﻟﺤﻘﻮﻕ ﺍﻟﻌﺎﺋﺪﺓ ﻟﻠﻤﺪﻳﻦ ﺿﺪ :</div>
+<div class="text-line" style="left: 136.0px; top: 385.0px; width: 176.0px; height: 14.0px;">-ثورية تاجموعتى بنت محمد (المذكورة أعلاه)</div>
+<div class="text-line" style="left: 279.0px; top: 407.0px; width: 33.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 228.0px; top: 429.0px; width: 84.0px; height: 11.0px;">.ﻗﺒﺎﺿﺔ ﻓﺎﺱ ﺳﺎﻳﺲ</div>
+<div class="text-line" style="left: 72.0px; top: 449.0px; width: 241.0px; height: 14.0px;">13 - ﺍﻟﺮﻫﻦ ﺍﻟﺠﺒﺮﻱ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 19/08/2020 (ﺳﺠﻞ : 388</div>
+<div class="text-line" style="left: 72.0px; top: 470.0px; width: 240.0px; height: 14.0px;">ﻋﺪﺩ: 351)، ﺿﻤﺎﻧﺎ ﻟﺪﻳﻦ ﻣﺒﻠﻐﻪ ﺛﻼﺛﺔ ﻣﻼﻳﻴﻦ ﻭ ﺛﻼﺛﻤﺎﻧﺔ ﻭ ﺃﺭﺑﻌﺔ</div>
+<div class="text-line" style="left: 73.0px; top: 490.0px; width: 239.0px; height: 14.0px;">ﻭ ﺃﺭﺑﻌﻮﻥ ﺍﻟﻒ ﻭ ﻣﺎﻧﺘﻴﻦ ﻭ ﺃﺭﺑﻌﻮﻥ ﺩﺭﻫﻢ ﻭ ﺃﺭﺑﻌﻮﻥ ﺳﻨﺘﻴﻤﺎ</div>
+<div class="text-line" style="left: 122.0px; top: 512.0px; width: 190.0px; height: 13.0px;">(3344240.4 ﺩﻫـ) ﻛﺎﻓﺔ ﺍﻟﺤﻘﻮﻕ ﺍﻟﻌﺎﺋﺪﺓ ﻟﻠﻤﺪﻳﻦ</div>
+<div class="text-line" style="left: 291.0px; top: 534.0px; width: 21.0px; height: 11.0px;">ﺿﺪ:</div>
+<div class="text-line" style="left: 112.0px; top: 552.0px; width: 200.0px; height: 17.0px;">نبيل تاجموعتي بن محمد ( المذكورة أعلاه ) لفائدة:</div>
+<div class="text-line" style="left: 227.0px; top: 575.0px; width: 85.0px; height: 14.0px;">-ﻗﺒﺎﺿﺔ ﻓﺎﺱ ﺳﺎﻳﺲ</div>
+<div class="text-line" style="left: 72.0px; top: 596.0px; width: 239.0px; height: 14.0px;">ملاحظة: وتجدر الاشارة الى ان الملك المذكور مثقل بارتفاق</div>
+<div class="text-line" style="left: 262.0px; top: 620.0px; width: 50.0px; height: 11.0px;">ﻣﻤﺮ ﻋﻤﻮﻣﻲ</div>
+<div class="text-line" style="left: 709.0px; top: 657.0px; width: 15.0px; height: 12.0px;">16</div>
+<div class="text-line" style="left: 533.0px; top: 658.0px; width: 41.0px; height: 13.0px;">371.61</div>
+<div class="text-line" style="left: 81.0px; top: 659.0px; width: 231.0px; height: 14.0px;">1 – ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ :2007/06/05 ( ﺳﺠﻞ : 237 ﻋﺪﺩ: 790)</div>
+<div class="text-line" style="left: 597.0px; top: 660.0px; width: 74.0px; height: 12.0px;">ﺭﺳﻢ ﻋﻘﺎﺭﻱ ﻋﺪﺩ</div>
+<div class="text-line" style="left: 369.0px; top: 661.0px; width: 105.0px; height: 12.0px;">ﺷﺮﻛﺔ ﺑﺮﺍﺩﺭﺯ  ﺑﺮﻭﻣﻮﺳﻴﻮﻥ</div>
+<div class="text-line" style="left: 605.0px; top: 679.0px; width: 57.0px; height: 12.0px;">07/165234</div>
+<div class="text-line" style="left: 81.0px; top: 680.0px; width: 231.0px; height: 14.0px;">ﻃﺮﻳﻖ ﻋﺮﺿﻪ 20ﻡ ﻣﺎ ﺑﻴﻦ ﺍﻟﻌﻼﻣﺎﺕ  (ﺏ2 – ﺏ 3) ﻭ ﻃﺮﻳﻖ</div>
+<div class="text-line" style="left: 351.0px; top: 680.0px; width: 141.0px; height: 13.0px;">STE BROTHERS PROMOTION</div>
+<div class="text-line" style="left: 83.0px; top: 700.0px; width: 228.0px; height: 15.0px;">ﻋﺮﺿﻪ 30 ﻡ ﻣﺎ ﺑﻴﻦ ﺍﻟﻌﻼﻣﺎﺕ ( ﺏ4 – ﺏ 3) ﻭ ( ﺏ6 – ﺏ7)</div>
+<div class="text-line" style="left: 81.0px; top: 721.0px; width: 231.0px; height: 16.0px;">2 – ﺍﻟﺮﻫﻦ ﺍﻟﺠﺒﺮﻱ ﺍﻟﻤﻘﻴﺪ ﺑﺘﺎﺭﻳﺦ 2020/03/12 (ﺳﺠﻞ : 384</div>
+<div class="text-line" style="left: 81.0px; top: 743.0px; width: 230.0px; height: 14.0px;">عدد : 181)، ضمانا لدين مبلغه ستة ملايين وثلاثمانة وسته</div>
+<div class="text-line" style="left: 80.0px; top: 764.0px; width: 231.0px; height: 14.0px;">وتسعون ألف ومائة واثنان وخمسون درهم و ستون سنتيما</div>
+<div class="text-line" style="left: 115.0px; top: 785.0px; width: 196.0px; height: 14.0px;">(6396152,60 ﺩﻫﺎ) ﻋﻠﻰ ﻛﺎﻓﺔ ﺍﻟﻤﻠﻚ ﺍﻟﻤﺬﻛﻮﺭ ﺿﺪ :</div>
+<div class="text-line" style="left: 138.0px; top: 805.0px; width: 172.0px; height: 15.0px;">-شركة برادرز بروموسيون (المذكورة أعلاه)</div>
+<div class="text-line" style="left: 279.0px; top: 826.0px; width: 32.0px; height: 12.0px;">ﻟﻔﺎﺋﺪﺓ:</div>
+<div class="text-line" style="left: 133.0px; top: 847.0px; width: 177.0px; height: 12.0px;">-الخزينة العامة للمملكة قباضة فاس سايس</div>
+<div class="text-line" style="left: 708.0px; top: 887.0px; width: 15.0px; height: 12.0px;">17</div>
+<div class="text-line" style="left: 532.0px; top: 888.0px; width: 38.0px; height: 11.0px;">443.40</div>
+<div class="text-line" style="left: 607.0px; top: 888.0px; width: 51.0px; height: 13.0px;">ﻏﻴﺮ ﻣﺤﻔﻈﺔ</div>
+<div class="text-line" style="left: 370.0px; top: 889.0px; width: 101.0px; height: 14.0px;">ﺍﻟﻤﺮﻧﻴﺴﻲ ﺣﻤﻴﺪ ﻭﺷﺮﻛﺎﺅﻩ</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 462.0px; top: 41.0px; width: 111.0px; height: 12.0px;"># 1 040 858,00 #</div>
+<div class="text-line" style="left: 262.0px; top: 48.0px; width: 60.0px; height: 3.0px;">ﻣﺎ ﺍﻟﻘﺎﺩﺓ ﺍﻟﻤ</div>
+<div class="text-line" style="left: 134.0px; top: 58.0px; width: 321.0px; height: 15.0px;">un million quarante mille huit cent cinquante huit</div>
+<div class="text-line" style="left: 18.0px; top: 68.0px; width: 116.0px; height: 11.0px;">Payez contre ce chèque</div>
+<div class="text-line" style="left: 26.0px; top: 85.0px; width: 75.0px; height: 13.0px;">Dirhams##</div>
+<div class="text-line" style="left: 87.0px; top: 112.0px; width: 260.0px; height: 14.0px;">CAISSE DE DEPOT ET DE GESTION</div>
+<div class="text-line" style="left: 20.0px; top: 117.0px; width: 59.0px; height: 11.0px;">A l'ordre de</div>
+<div class="text-line" style="left: 309.0px; top: 141.0px; width: 28.0px; height: 12.0px;">Fès</div>
+<div class="text-line" style="left: 49.0px; top: 145.0px; width: 49.0px; height: 9.0px;">Pavable à</div>
+<div class="text-line" style="left: 428.0px; top: 145.0px; width: 12.0px; height: 9.0px;">Le</div>
+<div class="text-line" style="left: 43.0px; top: 159.0px; width: 151.0px; height: 8.0px;">CENTRE D'AFFAIRES FES</div>
+<div class="text-line" style="left: 492.0px; top: 165.0px; width: 48.0px; height: 11.0px;">Signature</div>
+<div class="text-line" style="left: 350.0px; top: 166.0px; width: 109.0px; height: 10.0px;">0056 S 000000020</div>
+<div class="text-line" style="left: 253.0px; top: 170.0px; width: 52.0px; height: 9.0px;">Compte nº</div>
+<div class="text-line" style="left: 43.0px; top: 172.0px; width: 87.0px; height: 6.0px;">PLACE DE L'ATLAS</div>
+<div class="text-line" style="left: 301.0px; top: 191.0px; width: 101.0px; height: 7.0px;">RADEEF EMOUN</div>
+<div class="text-line" style="left: 43.0px; top: 202.0px; width: 20.0px; height: 9.0px;">FES</div>
+<div class="text-line" style="left: 332.0px; top: 209.0px; width: 66.0px; height: 8.0px;">FALE RADEEF</div>
+<div class="text-line" style="left: 73.0px; top: 215.0px; width: 50.0px; height: 6.0px;">0535643242</div>
+<div class="text-line" style="left: 104.0px; top: 230.0px; width: 27.0px; height: 12.0px;">ASZ</div>
+<div class="text-line" style="left: 193.0px; top: 230.0px; width: 44.0px; height: 11.0px;">603763</div>
+<div class="text-line" style="left: 162.0px; top: 233.0px; width: 12.0px; height: 8.0px;">No</div>
+<div class="text-line" style="left: 16.0px; top: 235.0px; width: 63.0px; height: 10.0px;">Chèque : série</div>
+<div class="text-line" style="left: 4.0px; top: 263.0px; width: 474.0px; height: 12.0px;"> 69 00 00 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 000 0</div>
+</div>
+<div class="page">
+<div class="document-title">DECISION  CONSIGNATION RADEEF</div>
+<div class="text-line" style="left: 620.0px; top: 63.0px; width: 22.0px; height: 96.0px;">MA%6102%50%03</div>
+<div class="text-line" style="left: 464.0px; top: 187.0px; width: 37.0px; height: 8.0px;">ﺍﻋﻼﻥ ﻫﺎﻫ</div>
+<div class="text-line" style="left: 125.0px; top: 191.0px; width: 62.0px; height: 10.0px;">Avis important</div>
+<div class="text-line" style="left: 325.0px; top: 205.0px; width: 313.0px; height: 12.0px;">ﺗﻌﺎﻗﺐ ﺑﺎﻟﺤﺒﺲ ﻣﻦ ﺳﻨﺔ ﺇﻟﻰ ﺧﻤﺴﺔ ﺳﻨﻮﺍﺕ ﻭﺑﻐﺮﺍﻣﺔ ﺗﺘﺮﺍﻭﺡ ﺑﻴﻦ 2000 ﻭ 1000 ﺩﺭﻫﻢ، ﺩﻭﻥ ﺃﻥ ﺗﻘﻞ ﻗﻴﻤﺘﻬﺎ ﻋﻦ ﺧﻤﺴﺔ</div>
+<div class="text-line" style="left: 9.0px; top: 209.0px; width: 294.0px; height: 9.0px;">"Est passible d'un emprisonnement d'un an à cinq ans et d'une amende de 2 000 à 10 000</div>
+<div class="text-line" style="left: 326.0px; top: 217.0px; width: 313.0px; height: 10.0px;">و عشرين في المائة من مبلغ الشيك أو الخصاص، ساحب الشيك المتعرض بصفة غير صحيحة لدى المسحوب عليه.</div>
+<div class="text-line" style="left: 9.0px; top: 219.0px; width: 295.0px; height: 9.0px;">dirhams sans que cette amende puisse être inférieure à vingt cinq pour cent du montant du</div>
+<div class="text-line" style="left: 8.0px; top: 228.0px; width: 296.0px; height: 10.0px;">chèque ou de l'insuffisance de provision, le tireur du chèque qui fait irrégulièrement défense au</div>
+<div class="text-line" style="left: 516.0px; top: 229.0px; width: 122.0px; height: 9.0px;">( ﻗﺎﻧﻮﻥ ﺭﻗﻢ 15/ ﺍﻟﻤﺘﻌﻠﻖ ﺑﻤﺪﻭﻧﺔ ﺍﻟﺘﺠﺎﺭﺓ) .</div>
+<div class="text-line" style="left: 8.0px; top: 238.0px; width: 140.0px; height: 9.0px;">tiré de payer (loi 15/95 code de commerce)".</div>
+</div>
+</body>
+</html>
